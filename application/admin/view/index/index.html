@@ -1,0 +1,155 @@
+{extend name="common/base" /}
+{block name="right"}
+<div class="layui-body" style="bottom: 0;border-left: solid 2px #1AA094;" id="admin-body">
+    <div style="padding:10px;">
+        <div class="admin-main">
+            <blockquote class="layui-elem-quote">
+                <p>HTML5浮窗音乐播放器</p>
+                <p>建议反馈和问题收集地址:
+                    <a href="http://www.wangdabo.xyz/post-4.html"
+                       target="_blank">http://www.wangdabo.xyz/post-4.html</a>
+                </p>
+                <p>交流群：426688210</p>
+                <p>嘿嘿~~~</p>
+            </blockquote>
+            <fieldset class="layui-elem-field">
+                <legend>更新日志</legend>
+                <div class="layui-field-box">
+                    <fieldset class="layui-elem-field layui-field-title">
+                        <legend>版本号:# v1.6.2 2018.7.28</legend>
+                        <div class="layui-field-box">
+                            <p>1、支持添加QQ音乐歌曲解析</p>
+                            <p>2、修复网易音乐歌曲缓存过期问题</p>
+                        </div>
+                    </fieldset>
+                </div>
+            </fieldset>
+            <fieldset class="layui-elem-field">
+                <legend>更新日志</legend>
+                <div class="layui-field-box">
+                    <fieldset class="layui-elem-field layui-field-title">
+                        <legend>版本号:# v1.6.1 2018.7.25</legend>
+                        <div class="layui-field-box">
+                            <p>1、支持添加酷狗音乐歌曲解析</p>
+                        </div>
+                    </fieldset>
+                </div>
+            </fieldset>
+            <fieldset class="layui-elem-field">
+                <legend>更新日志</legend>
+                <div class="layui-field-box">
+                    <fieldset class="layui-elem-field layui-field-title">
+                        <legend>版本号:# v1.6 2018.7.23</legend>
+                        <div class="layui-field-box">
+                            <p>1、多个页面打开，只有第一次打开页面加载播放器</p>
+                            <p>2、添加jquery未加载判断</p>
+                            <p>3、修复Tooltip有时不显示的问题</p>
+                        </div>
+                    </fieldset>
+                </div>
+            </fieldset>
+            <fieldset class="layui-elem-field">
+                <legend>更新日志</legend>
+                <div class="layui-field-box">
+                    <fieldset class="layui-elem-field layui-field-title">
+                        <legend>版本号:# v1.5 2018.7.19</legend>
+                        <div class="layui-field-box">
+                            <p>1、对服务器进行续费</p>
+                            <p>2、修复歌词经常加载不出来的问题[使用redis进行歌词缓存]</p>
+                            <p>3、修复切歌图片放大动画消失问题</p>
+                            <p>4、修复切歌图片放大动画消失问题</p>
+                            <p>5、添加飘动音符@特效</p>
+                            <p>6、使用缓存提升加载速度</p>
+                            <p>7、支持https网站加载</p>
+                        </div>
+                    </fieldset>
+                </div>
+            </fieldset>
+            <fieldset class="layui-elem-field">
+                <legend>更新日志</legend>
+                <div class="layui-field-box">
+                    <fieldset class="layui-elem-field layui-field-title">
+                        <legend>版本号:# v1.4 2018.1.26</legend>
+                        <div class="layui-field-box">
+                            <p>1、修复搜索歌曲添加无图片的问题</p>
+                        </div>
+                    </fieldset>
+                </div>
+            </fieldset>
+            <fieldset class="layui-elem-field">
+                <legend>更新日志</legend>
+                <div class="layui-field-box">
+                    <fieldset class="layui-elem-field layui-field-title">
+                        <legend>版本号:# v1.3 2018.1.19</legend>
+                        <div class="layui-field-box">
+                            <p>1、修复网易云音乐api失效</p>
+                            <p>2、修复歌词有时不显示的问题</p>
+                            <p>3、对js代码进行优化，规范写法</p>
+                            <p>4、添加本地记住播放顺序功能</p>
+                            <p>5、修复音量调节到百分百刷新页面进度条为0的问题</p>
+                            <p>6、播放器默认背景色改为黑色20%透明度</p>
+                            <p>持续更新中~~~更多功能尽情期待</p>
+                        </div>
+                    </fieldset>
+                </div>
+            </fieldset>
+            <fieldset class="layui-elem-field">
+                <legend>更新日志</legend>
+                <div class="layui-field-box">
+                    <fieldset class="layui-elem-field layui-field-title">
+                        <legend>版本号:# v1.2 2017.4.16</legend>
+                        <div class="layui-field-box">
+                            <p>1、支持网易歌单解析，填写歌单id即可解析歌单 ~~~~</p>
+                            <p>2、音乐解析增加虾米音乐解析</p>
+                            <p>4、优化根据主色获取字体颜色算法</p>
+                            <p>持续更新中~~~更多功能尽情期待</p>
+                        </div>
+                    </fieldset>
+                </div>
+            </fieldset>
+            <fieldset class="layui-elem-field">
+                <legend>更新日志</legend>
+                <div class="layui-field-box">
+                    <fieldset class="layui-elem-field layui-field-title">
+                        <legend>版本号:# v1.2 2017.3.8</legend>
+                        <div class="layui-field-box">
+                            <p>1、后台音乐支持本地音乐上传,仅供内测 ~~~~</p>
+                            <p>2、获取歌单使用缓存0.1秒获取歌单 ~~~~</p>
+                            <p>4、优化音乐播放器js ~~~~</p>
+                            <p>本地音乐暂不支持歌词上传,尽情期待、</p>
+                        </div>
+                    </fieldset>
+                </div>
+            </fieldset>
+            <fieldset class="layui-elem-field">
+                <legend>更新日志</legend>
+                <div class="layui-field-box">
+                    <fieldset class="layui-elem-field layui-field-title">
+                        <legend>版本号:# v1.1 2017.2.26</legend>
+                        <div class="layui-field-box">
+                            <p>1、后台音乐支持网易搜索 ~~~~</p>
+                            <p>2、可进行网易ID搜索 ~~~~</p>
+                            <p>3、修复歌词跨域问题 ~~~~</p>
+                            <p>4、优化音乐播放器js ~~~~</p>
+                        </div>
+                    </fieldset>
+                </div>
+            </fieldset>
+            <fieldset class="layui-elem-field">
+                <legend>更新日志</legend>
+                <div class="layui-field-box">
+                    <fieldset class="layui-elem-field layui-field-title">
+                        <legend>版本号:# v1.1 2017.2.3</legend>
+                        <div class="layui-field-box">
+                            <p>1、基本功能实现 ~~~~</p>
+                            <p>2、歌曲列表改为首次加载全部 ~~~~</p>
+                            <p>3、修复变色功能内存溢出 ~~~~</p>
+                            <p>4、部分已知BUG修复 ~~~~</p>
+                        </div>
+                    </fieldset>
+                </div>
+            </fieldset>
+        </div>
+    </div>
+</div>
+{/block}

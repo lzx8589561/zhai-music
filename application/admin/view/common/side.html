@@ -1,0 +1,38 @@
+<div class="layui-side layui-bg-black" id="admin-side">
+    <div class="layui-side-scroll" id="admin-navbar-side" lay-filter="side">
+        <ul class="layui-nav layui-nav-tree beg-navbar">
+            <li class="layui-nav-item">
+                <a href="/admin/">
+                    <i class="fa fa-stop-circle" aria-hidden="true" data-icon="fa-stop-circle"></i>
+                    <cite>首页</cite>
+                </a>
+            </li>
+            <li class="layui-nav-item layui-nav-itemed">
+                <a href="javascript:;"><i class="fa fa-cubes" aria-hidden="true" data-icon="fa-cubes"></i>
+                    <cite>播放器</cite><span class="layui-nav-more"></span></a>
+                <dl class="layui-nav-child">
+                    {volist name="userPlayers" id="vo"}
+                    <dd>
+                        <a href="/admin/player/{$vo.id}"><i class="layui-icon">&#xe623;</i><cite>{$vo.name}</cite></a>
+                    </dd>
+                    {/volist}
+                    <a href="javascript:;" id="addPlayer"><i class="layui-icon">&#xe608;</i><cite>添加播放器</cite></a>
+                </dl>
+            </li>
+            <li class="layui-nav-item layui-nav-itemed">
+                <a href="javascript:;"><i class="fa fa-cubes" aria-hidden="true" data-icon="fa-cubes"></i>
+                    <cite>歌单</cite><span class="layui-nav-more"></span></a>
+                <dl class="layui-nav-child">
+                    {volist name="userSongSheets" id="vo"}
+                    <dd>
+                        <a href="/admin/songSheet/{$vo.id}"><i class="layui-icon"
+                                       data-icon="">&#xe60a;</i><cite>{$vo.name}</cite></a>
+                    </dd>
+                    {/volist}
+                    <a href="javascript:;" id="addSongSheet"><i class="layui-icon">&#xe608;</i><cite>添加歌单</cite></a>
+                </dl>
+            </li>
+            <span class="layui-nav-bar"></span>
+        </ul>
+    </div>
+</div>

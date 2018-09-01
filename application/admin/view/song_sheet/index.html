@@ -1,0 +1,336 @@
+{extend name="common/base" /}
+{block name="right"}
+<div class="layui-body" style="bottom: 0;border-left: solid 2px #1AA094;" id="admin-body">
+    <div style="padding:10px;">
+        <div class="layui-larry-box col-6">
+            <div class="larry-personal">
+                <!-- /header -->
+                <header class="larry-personal-tit">
+                    <span><i class="layui-icon">&#xe623;</i>歌单歌曲</span>
+                </header>
+                <div class="larry-personal-body clearfix">
+                    <div style="margin-left: 10px" class="block__list_words">
+                        <input type="hidden" id="songSheetId" value="{$entity.id}">
+                        <ul id="handle-1">
+                            {volist name="songs" id="song"}
+                            <li song_id="{$song.song_id}" name="{$song.name}" type="{$song.type}"
+                                album_name="{$song.album_name}" artist_name="{$song.artist_name}"
+                                album_cover="{$song.album_cover}" location="{$song.location}" lyric="{$song.lyric}">
+                                <span class="drag-handle">☰</span>
+                                {$song.name}
+                                <div style="float:right">
+                                    <a onclick="delPlayerSongSheet(this)" href="javascript:"><i class="layui-icon">
+                                        &#x1006;</i></a></div>
+                            </li>
+                            {/volist}
+                        </ul>
+                    </div>
+                    <div style="text-align: center;">
+                        <button id="saveSongSheetSongTaxis" class="layui-btn layui-btn-primary">保存歌单</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="layui-larry-box col-6">
+            <div class="larry-personal">
+                <!-- /header -->
+                <header class="larry-personal-tit">
+                    <span><i class="layui-icon">&#xe620;</i>歌单配置</span>
+                </header>
+                <div class="larry-personal-body clearfix">
+                    <form class="layui-form form-container" method="post">
+                        <input type="hidden" name="id" value="{$entity.id}">
+                        <div class="layui-tab">
+                            <ul class="layui-tab-title">
+                                <li class="layui-this">基本设置</li>
+                                <li class="sdtj_option">添加歌曲</li>
+                                <li class="sdtj_option">搜索添加</li>
+                            </ul>
+                            <div class="layui-tab-content">
+                                <div class="layui-tab-item layui-show">
+                                    <div class="layui-form-item">
+                                        <label class="layui-form-label">歌单类型</label>
+                                        <div class="layui-input-block">
+                                            <select name="type" lay-verify="" lay-filter="type" id="type">
+                                                <option value="sdtj">手动添加</option>
+                                                <option value="wygd">网易歌单</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="layui-form-item" id="sheetIdDiv" style="display: none">
+                                        <label class="layui-form-label">歌单id</label>
+                                        <div class="layui-input-block">
+                                            <input type="text" name="sheet_id" value="{$entity.sheet_id}"
+                                                   placeholder="请输入歌单id" autocomplete="off" class="layui-input">
+                                        </div>
+                                    </div>
+                                    <div class="layui-form-item">
+                                        <label class="layui-form-label">歌单名称</label>
+                                        <div class="layui-input-block">
+                                            <input type="text" name="name" value="{$entity.name}"
+                                                   placeholder="请输入歌单名称" autocomplete="off" class="layui-input">
+                                        </div>
+                                    </div>
+                                    <div class="layui-form-item">
+                                        <label class="layui-form-label">歌单作者</label>
+                                        <div class="layui-input-block">
+                                            <input type="text" name="author" value="{$entity.author}"
+                                                   placeholder="请输入歌单作者" autocomplete="off" class="layui-input">
+                                        </div>
+                                    </div>
+                                    <div class="layui-input-block">
+                                        <button class="layui-btn" lay-submit lay-filter="save">保存配置</button>
+                                    </div>
+                                </div>
+                                <div class="layui-tab-item">
+                                    <div class="layui-form-item">
+                                        <input type="radio" name="position" value="top" title="添加到顶部" checked>
+                                        <input type="radio" name="position" value="bottom" title="添加到底部">
+                                    </div>
+                                    <div class="layui-form-item">
+                                        <select name="city" lay-verify="" id="songType">
+                                            <option value="">请选择歌曲来源</option>
+                                            <option value="wy">网易音乐</option>
+                                            <option value="kg">酷狗音乐</option>
+                                            <option value="qq">QQ音乐</option>
+                                            <%--
+                                            <option value="xm">虾米音乐</option>
+                                            --%>
+                                        </select>
+                                    </div>
+                                    <div class="layui-form-item">
+
+                                        <input type="text" id="songId"
+                                               placeholder="请输入歌曲ID" autocomplete="off" class="layui-input">
+
+                                    </div>
+                                    <div class="layui-input-block">
+                                        <button class="layui-btn" lay-submit lay-filter="addSong">添加歌曲</button>
+                                    </div>
+                                </div>
+                                <div class="layui-tab-item">
+                                    <div class="layui-form-item">
+                                        <div class="layui-form-item">
+                                            <input type="radio" name="position2" value="top" title="添加到顶部" checked>
+                                            <input type="radio" name="position2" value="bottom" title="添加到底部">
+                                        </div>
+                                        <div class="layui-form-item">
+                                            <label class="layui-form-label">站点名称</label>
+                                            <div class="layui-input-block">
+                                                <input type="text" id="sou" value="" placeholder="输入歌名回车搜索"
+                                                       autocomplete="off" class="layui-input">
+                                            </div>
+                                        </div>
+                                        <table class="layui-table">
+                                            <thead>
+                                            <tr>
+                                                <th>名称</th>
+                                                <th>作者</th>
+                                                <th>专辑</th>
+                                                <th>操作</th>
+                                            </tr>
+                                            </thead>
+                                            <tbody id="songTbody">
+                                            <tr>
+                                                <td colspan="4">来试试搜索吧！</td>
+                                            </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{/block}
+{block name="script"}
+<script>
+    if ('{$entity.type}' === 'wygd') {
+        $(".sdtj_option").hide()
+        $("#sheetIdDiv").show();
+        $("#type").val("{entity.type}");
+    }
+
+    layui.config({
+        base: 'js/'
+    }).use(['element', 'layer', 'form'], function () {
+        var element = layui.element(),
+            $ = layui.jquery,
+            form = layui.form();
+        layer = layui.layer;
+        form.on('submit(addSong)', function (data) {
+            songType = $("#songType").val();
+            songId = $("#songId").val();
+            position = $(":radio[name='position']:checked").val();
+            if (songType == "") {
+                layer.msg("请选择歌曲类型！");
+                return false;
+            }
+            if (songId.trim() == "") {
+                layer.msg("请填写歌曲id");
+                return false;
+            }
+
+            $.post("/admin/songSheet/selSong", {songId: songId, type: songType}, function (data) {
+                if (data.code === 1) {
+                    layer.confirm('歌曲名称：' + data.data.title + '<br/>歌手：' + data.data.author + ' <br/> 确认添加到歌单吗？', {
+                        icon: 3,
+                        title: '确认'
+                    }, function (index) {
+                        var liHtml = '<li song_id="' + songId +
+                            '" name="' + data.data.title + '" type="' + songType +
+                            '" album_name="' + data.data.author +
+                            '" artist_name="' + data.data.author +
+                            '" album_cover="' + data.data.pic +
+                            '" location="' + data.data.url +
+                            '"><span class="drag-handle">☰</span>' +
+                            ' ' + data.data.title +
+                            '<div style="float:right"><a onclick="delPlayerSongSheet(this)" href="javascript:"><i class="layui-icon">ဆ</i></a></div></li>';
+                        position == 'top' ? $("#handle-1").prepend(liHtml) : $("#handle-1").append(liHtml);
+                        layer.msg("已添加到歌单");
+                        layer.close(index);
+                    });
+                } else {
+                    layer.alert("未找到歌曲请检查输入是否有误！");
+                }
+            });
+
+
+            return false;
+        });
+        form.on('submit(save)', function (data) {
+            var songSheetName = $(":text[name='name']").val();
+            var songSheetAuthor = $(":text[name='author']").val();
+            var id = $(":hidden[name='id']").val();
+            var type = $("#type").val();
+            var sheetId = $(":text[name='sheet_id']").val();
+            var data = {
+                id: id,
+                name: songSheetName,
+                author: songSheetAuthor
+            };
+            if (type !== "sdtj") {
+                data["type"] = type;
+                data["sheet_id"] = sheetId;
+            } else {
+                data["type"] = type;
+                data["sheet_id"] = "sdtj";
+            }
+
+            $.post("/admin/songSheet/edit", data, function (data) {
+                if (data.code === 1) {
+                    layer.msg(data.msg);
+                    if (type !== "sdtj") {
+                        setTimeout(function () {
+                            location.reload();
+                        }, 500);
+                    }
+                } else {
+                    layer.alert('保存失败！');
+                }
+            });
+            return false;
+        });
+
+        form.on('select(type)', function (data) {
+            if (data.value == "wygd") {
+                $(".sdtj_option").hide()
+                $("#sheetIdDiv").show();
+
+            } else if (data.value == "sdtj") {
+                $(".sdtj_option").show();
+                $("#sheetIdDiv").hide();
+            }
+        });
+
+        $('.addSongSheet').click(function () {
+            htmlStr = '<li><span class="drag-handle">☰</span> ' + $(this).attr("ss-name") + '<div style="float:right"><a onclick="delPlayerSongSheet(this)" href="#"><i class="layui-icon">&#x1006;</i></a></div><input type="hidden" name="ids" value="' + $(this).attr("ss-id") + '"></li>';
+            $('#handle-1').append(htmlStr);
+        });
+
+        $('#saveSongSheetSongTaxis').click(function () {
+
+            var data = $("#handle-1 li");
+            var jsonData = new Array();
+            for (var x = 0; x < data.length; x++) {
+                var row = $(data[x]);
+                jsonData[x] = {
+                    song_id: row.attr("song_id"),
+                    name: row.attr("name"),
+                    type: row.attr("type"),
+                    album_name: row.attr("album_name"),
+                    artist_name: row.attr("artist_name"),
+                    album_cover: row.attr("album_cover"),
+                    // lyric: row.attr("lyric"),
+                    taxis: x
+                };
+            }
+            jsonData = JSON.stringify(jsonData);
+
+            $.post("/admin/songSheet/editSongSheetSong", {
+                jsonData: jsonData,
+                songSheetId: $("#songSheetId").val()
+            }, function (data) {
+                if (data.code === 1) {
+                    layer.alert(data.msg);
+                } else {
+                    layer.alert('保存失败！');
+                }
+            });
+        });
+
+        var tul = document.getElementById("handle-1");
+        Sortable.create(tul, {
+            handle: '.drag-handle',
+            animation: 150
+        });
+
+        $("#sou").keydown(function (e) {
+            var curKey = e.which;
+            if (curKey == 13) {
+                $.post("/songSheets/searchAddSong", {songName: $(this).val()}, function (data) {
+                    if (data.success) {
+                        var htmlArray = [];
+                        $("#songTbody").html("");
+                        $.each(data.songList, function (i, item) {
+                            htmlArray.push('<tr>')
+                            htmlArray.push('<td>' + item.name + '</td>');
+                            htmlArray.push('<td>' + item.artistName + '</td>');
+                            htmlArray.push('<td>' + item.albumName + '</td>');
+                            htmlArray.push('<td><a class="addSong" href="javascript:" song_id="' + item.songId + '" name="' + item.name + '" type="' + item.type + '" album_name="' + item.albumName + '" artist_name="' + item.artistName + '" album_cover="' + item.albumCover + '" lyric="' + item.lyric + '"><i class="layui-icon">&#xe608;</i></a></td>');
+                            htmlArray.push('</tr>')
+                        });
+                        $("#songTbody").append(htmlArray.join(""));
+
+                        //重新绑定click事件
+                        $(".addSong").click(function () {
+                            position2 = $(":radio[name='position2']:checked").val();
+                            var zhis = $(this);
+                            $.post("/song/findMusicImg", {songId: zhis.attr("song_id")}, function (data) {
+                                if (data.success) {
+                                    var albumCover = data.albumCover;
+                                    liHtml2 = '<li song_id="' + zhis.attr("song_id") + '" name="' + zhis.attr("name") + '" type="' + zhis.attr("type") + '" album_name="' + zhis.attr("album_name") + '" artist_name="' + zhis.attr("artist_name") + '" album_cover="' + albumCover + '" lyric="' + zhis.attr("lyric") + '"><span class="drag-handle">☰</span> ' + zhis.attr("name") + '<div style="float:right"><a onclick="delPlayerSongSheet(this)" href="javascript:"><i class="layui-icon">ဆ</i></a></div></li>';
+                                    position2 == 'top' ? $("#handle-1").prepend(liHtml2) : $("#handle-1").append(liHtml2);
+                                }
+                            });
+
+                        });
+                    }
+                });
+                return false;
+            }
+        });
+    });
+
+    function delPlayerSongSheet(entity) {
+        layui.use('jquery', function () {
+            $ = layui.jquery;
+            $(entity).parent().parent().remove();
+        });
+    }
+</script>
+{/block}

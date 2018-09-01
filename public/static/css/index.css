@@ -1,0 +1,70 @@
+﻿.navbar {
+	margin-bottom: 0;
+}
+body {
+	font-family: "Microsoft Yahei";
+}
+.jumbotron {
+	background-image: url('../images/background.jpg');
+	background-position: center bottom;
+	-webkit-background-size: cover;
+	background-size: cover;
+}
+@media screen and (min-width:420px) {
+	.jumbotron h1,.jumbotron p {
+		color: #3e3e3e;
+	}
+}
+.desc {
+	margin: 0 auto;
+}
+footer {
+	margin-top: 30px;
+	height: 150px;
+	padding-top: 20px;
+}
+footer a {
+	color: #FFF !important;
+}
+.copy {
+	margin-top: 40px;
+}
+
+.download a {
+	text-decoration: none !important;
+}
+.anchor {
+	width: 200px;
+	margin-top: 20px;
+}
+.do-content {
+	width: 100%;
+}
+pre {
+	width: 100% !important;
+	max-height: 350px;
+}
+.table {
+	width: 100% !important;
+}
+.fixed-nav {
+	margin-top: 50px;
+}
+.logo-img {
+	height: 40px;
+	margin-top: -10px;
+}
+.bg-bottom {
+    color: #fff;
+    background-color: #424242;
+}
+.btn-primary {
+    color: #fff;
+    background-color: #8e8e8e;
+    border-color: #dadada;
+}
+.btn-primary:hover{
+    color: #fff;
+    background-color: #676767;
+    border-color: #9a9a9a;
+}
