@@ -20,6 +20,14 @@ composer install
 ````
 /config/database.php
 ````
+创建数据库
+```
+字符编码：utf8 -- UTF-8 Unicode
+```
+导入数据库脚本，脚本位置extend/database
+### 启动项目
+- 添加public为web根目录
+- 若为apache服务器则默认伪静态，nginx可自行配置伪静态
 ## 预览
 ### 首页
 ![webconfig](preview/index.png)
