@@ -24,6 +24,7 @@ Route::get('/admin/','admin/index/index');
 // 播放器详情
 Route::get('/admin/player/:id','admin/player/index');
 
+Route::post('/admin/songSheet/mainColor','admin/SongSheet/mainColor');
 // 名称搜索歌曲
 Route::post('/admin/songSheet/searchSong','admin/SongSheet/searchSong');
 // id搜索歌曲
@@ -36,6 +37,15 @@ Route::post('/admin/songSheet/add','admin/SongSheet/add');
 Route::post('/admin/songSheet/edit','admin/SongSheet/edit');
 // 歌单首页
 Route::get('/admin/songSheet/:id','admin/SongSheet/index');
+
+// 获取播放器接口
+Route::get('/api/info','api/Index/info');
+// 获取主色接口
+Route::get('/api/mainColor','api/Index/mainColor');
+// 获取音乐地址接口
+Route::get('/api/musicUrl','api/Index/musicUrl');
+// 获取音乐歌词地址
+Route::get('/api/musicLyric','api/Index/musicLyric');
 
 return [
 

@@ -1,0 +1,67 @@
+.com-hd{
+	margin: 20px 0 15px;
+}
+
+.com-hd b{
+	font-size:16px;
+	color:#333;
+	font-family:'Microsoft Yahei';
+}
+
+.tb-set{
+	border-collapse: collapse;
+	width: 100%;
+}
+
+.tb-set tr td{
+	padding: 10px 5px;
+	border: 1px solid #e0e0e0;
+}
+
+.actived{color:#f00}
+
+.tb-set tr td input, .tb-set tr td img{
+	margin:0 auto;
+	vertical-align: middle;
+}
+
+.tb-set tr td b{
+	color: #000;
+}
+
+.tb-set tr td .sel{
+	height:17px;
+	border:1px solid #ccc;
+	border-radius:5px;
+	outline: none;
+	color:#333;
+	padding:3px 1px;
+}
+
+.tb-set tr td .sel select{
+	border:none;
+	outline:none;
+	width:auto;
+}
+
+.tb-set tr td .txt{
+	width:90%;
+	height:25px;
+	border:1px solid #ccc;
+	line-height:23px;
+	border-radius:5px;
+	outline: none;
+	color:#333;
+	padding:3px 0 2px 5px;
+}
+
+.tb-set tr td .txt-lar{
+	width:150px;
+	height:200px;
+	border:1px solid #ccc;
+	line-height:15px;
+}
+
+.tb-set tr td .txt-sho{
+	width:150px;
+}

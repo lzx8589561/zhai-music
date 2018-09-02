@@ -10,6 +10,7 @@ namespace app\api\controller;
 
 
 use app\admin\model\SongSheet;
+use ilt\ImageUtils;
 use think\Controller;
 
 /**
@@ -38,10 +39,10 @@ class Index extends Controller
         $result .= "randomPlayer = ".$player->random_player.",";
         $result .= "defaultVolume = ".$player->default_volume.",";
         $result .= "showLrc = ".$player->show_lrc.",";
-        $result .= "greeting = '".$player->greeting."'',";
+        $result .= "greeting = '".$player->greeting."',";
         $result .= "showGreeting = ".$player->show_greeting.",";
         $result .= "defaultAlbum = ".$player->default_album.",";
-        $result .= "siteName = '".$player->site_name."'',";
+        $result .= "siteName = '".$player->site_name."',";
         $result .= "background = ".$player->background.";";
         // 获取播放器歌单
         $playerSongSheets = $playerModel->songSheets($id);
@@ -69,12 +70,68 @@ class Index extends Controller
                 'songTypes' => $songTypes,
                 'albumNames' => $albumNames,
                 'artistNames' => $artistNames,
-                'albumCovers' => $albumCovers,
-                'locations' => $locations
+                'albumCovers' => $albumCovers
             ];
         }
 
         $result .= "var songSheetList = ".json_encode($songSheetList);
-        return $result;
+        return response($result);
+    }
+
+
+    /**
+     * 获取图片主色及字体颜色
+     * @param $url string 图片链接
+     * @return string script
+     */
+    public function mainColor($url){
+        $result = "var cont =";
+        if($url != null && $url != ''){
+            list($r,$g,$b) = ImageUtils::mainColor($url);
+            $result .= "'".$r.",".$g.",".$b."'";
+            $grayLevel = $r * 0.299 + $g * 0.587 + $b * 0.114;
+            if ($grayLevel >= 150) {
+                $result .= ";font_color='0,0,0';";
+            }else{
+                $result .= ";font_color='255,255,255';";
+            }
+        }else{
+            $result .= "'0,0,0';font_color='255,255,255';";
+        }
+        return response($result);
+    }
+
+    /**
+     * 获取歌曲
+     * @param $type string 歌曲类型
+     * @param $songId string 歌曲id
+     * @return \think\response\Redirect
+     */
+    public function musicUrl($type,$songId){
+        $songs = model('admin/Song')->findMusicInfo($type,$songId);
+        if ($songs != '' && count($songs) > 0) {
+            $song = $songs[0];
+            return redirect($song['url']);
+        } else {
+            $this->error();
+        }
+    }
+
+    /**
+     * 获取歌词
+     * @param $type string 歌曲类型
+     * @param $songId string 歌曲id
+     * @return \think\Response
+     */
+    public function musicLyric($type,$songId){
+        $songs = model('admin/Song')->findMusicInfo($type,$songId);
+        if ($songs != '' && count($songs) > 0) {
+            $song = $songs[0];
+            $lryic = str_replace("\r\n",'',$song['lrc']);
+            $lryic = str_replace("\n",'',$lryic);
+            return response("var lrcstr ='".$lryic."'");
+        } else {
+            return response("var lrcstr =''");
+        }
     }
 }
