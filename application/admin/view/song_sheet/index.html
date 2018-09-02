@@ -149,6 +149,11 @@
 {/block}
 {block name="script"}
 <script>
+    var music_type = {
+        'netease':'wy',
+        'qq':'qq',
+        'kugou':'kg'
+    };
     if ('{$entity.type}' === 'wygd') {
         $(".sdtj_option").hide()
         $("#sheetIdDiv").show();
@@ -301,7 +306,7 @@
                             htmlArray.push('<td>' + item.title + '</td>');
                             htmlArray.push('<td>' + item.author + '</td>');
                             htmlArray.push('<td>' + item.album_name + '</td>');
-                            htmlArray.push('<td><a class="addSong" href="javascript:" song_id="' + item.songid + '" name="' + item.title + '" type="' + item.type + '" album_name="' + item.album_name + '" artist_name="' + item.author + '" album_cover="' + item.pic + '" lyric=""><i class="layui-icon">&#xe608;</i></a></td>');
+                            htmlArray.push('<td><a class="addSong" href="javascript:" song_id="' + item.songid + '" name="' + item.title + '" type="' + music_type[item.type] + '" album_name="' + item.album_name + '" artist_name="' + item.author + '" album_cover="' + item.pic + '" lyric=""><i class="layui-icon">&#xe608;</i></a></td>');
                             htmlArray.push('</tr>')
                         });
                         $("#songTbody").append(htmlArray.join(""));

@@ -98,8 +98,10 @@ class SongSheet extends BackendBaseController
                 $song = $musicApi->mc_get_song_by_id($songId, 'netease');
                 break;
             case  'kg':
+                $song = $musicApi->mc_get_song_by_id($songId, 'kugou');
                 break;
             case 'qq':
+                $song = $musicApi->mc_get_song_by_id($songId, 'qq');
                 break;
         }
 
@@ -125,8 +127,10 @@ class SongSheet extends BackendBaseController
                 $songs = $musicApi->mc_get_song_by_name($songName,'netease',$page);
                 break;
             case  'kg':
+                $songs = $musicApi->mc_get_song_by_name($songName,'kugou',$page);
                 break;
             case 'qq':
+                $songs = $musicApi->mc_get_song_by_name($songName,'qq',$page);
                 break;
         }
         $this->success('获取成功！','',$songs);

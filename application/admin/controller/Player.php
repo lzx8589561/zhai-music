@@ -72,12 +72,7 @@ class Player extends BackendBaseController
         $this->assign('entity', $entity);
 
         // 获取播放器歌单
-        $list = Db::table('player_song_sheet')
-            ->alias('pss')
-            ->join('song_sheet ss', 'ss.id=pss.song_sheet_id')
-            ->field('ss.*')->where('pss.player_id', $id)
-            ->order('pss.taxis asc')
-            ->select();
+        $list = $this->model->songSheets($id);
         $this->assign('selectedSongSheetList', $list);
 
         // 获取用户的所有歌单

@@ -9,6 +9,7 @@
 namespace app\admin\model;
 
 
+use think\Db;
 use think\Model;
 
 /**
@@ -19,4 +20,20 @@ use think\Model;
 class Player extends Model
 {
 
+    /**
+     * 获取播放器歌单
+     * @param $playerId
+     * @return array|\PDOStatement|string|\think\Collection
+     * @throws \think\db\exception\DataNotFoundException
+     * @throws \think\db\exception\ModelNotFoundException
+     * @throws \think\exception\DbException
+     */
+    public function songSheets($playerId){
+        return Db::table('player_song_sheet')
+            ->alias('pss')
+            ->join('song_sheet ss', 'ss.id=pss.song_sheet_id')
+            ->field('ss.*')->where('pss.player_id', $playerId)
+            ->order('pss.taxis asc')
+            ->select();
+    }
 }

@@ -826,7 +826,7 @@ class MusicApi
                             $radio_author = implode(',', $radio_authors);
                             $radio_lrc_urls = $this->mc_song_urls($radio_song_id, 'lrc', $site);
                             if ($radio_lrc_urls) {
-                                $radio_lrc = jsonp2json($this->mc_curl($radio_lrc_urls));
+                                $radio_lrc = $this->jsonp2json($this->mc_curl($radio_lrc_urls));
                             }
                             $radio_music = 'http://' . str_replace('ws', 'dl', $radio_url[$value['id']]);
                             if (!empty($radio_vkey['key'])) {
@@ -844,7 +844,8 @@ class MusicApi
                                 'author' => $radio_author,
                                 'lrc' => $this->str_decode($radio_lrc['lyric']),
                                 'url' => $radio_music,
-                                'pic' => 'http://y.gtimg.cn/music/photo_new/T002R300x300M000' . $radio_album_id . '.jpg'
+                                'pic' => 'http://y.gtimg.cn/music/photo_new/T002R300x300M000' . $radio_album_id . '.jpg',
+                                'album_name' => $value['album']['name']
                             ];
                         }
                     }
