@@ -12,6 +12,7 @@ namespace app\api\controller;
 use app\admin\model\SongSheet;
 use ilt\ImageUtils;
 use think\Controller;
+use think\facade\Cache;
 
 /**
  * api获取控制器
@@ -30,6 +31,11 @@ class Index extends Controller
      * @throws \think\exception\DbException
      */
     public function info($id){
+        // 读取缓存
+        $cache = Cache::get('info'.$id);
+        if($cache){
+            return response($cache);
+        }
         $result = '';
         $playerModel = model('admin/Player');
         // 获取播放器详情
@@ -75,6 +81,8 @@ class Index extends Controller
         }
 
         $result .= "var songSheetList = ".json_encode($songSheetList);
+        // 设置缓存
+        Cache::set('info'.$id,$result);
         return response($result);
     }
 
@@ -85,6 +93,10 @@ class Index extends Controller
      * @return string script
      */
     public function mainColor($url){
+        $cache = Cache::get('mainColor'.$url);
+        if($cache){
+            return response($cache);
+        }
         $result = "var cont =";
         if($url != null && $url != ''){
             list($r,$g,$b) = ImageUtils::mainColor($url);
@@ -98,6 +110,9 @@ class Index extends Controller
         }else{
             $result .= "'0,0,0';font_color='255,255,255';";
         }
+
+        // 设置缓存
+        Cache::set('mainColor'.$url,$result);
         return response($result);
     }
 
@@ -108,13 +123,22 @@ class Index extends Controller
      * @return \think\response\Redirect
      */
     public function musicUrl($type,$songId){
-        $songs = model('admin/Song')->findMusicInfo($type,$songId);
-        if ($songs != '' && count($songs) > 0) {
-            $song = $songs[0];
-            return redirect($song['url']);
-        } else {
-            $this->error();
+        // 读取缓存
+        $cache = Cache::get('music'.$type.$songId);
+        if(!$cache){
+            $songs = model('admin/Song')->findMusicInfo($type,$songId);
+            if ($songs != '' && count($songs) > 0) {
+                $song = $songs[0];
+                // 设置缓存
+                Cache::set('music'.$type.$songId,$song['url'],60*20);
+                return redirect($song['url']);
+            } else {
+                $this->error();
+            }
+        }else{
+            return redirect($cache);
         }
+
     }
 
     /**
@@ -124,14 +148,20 @@ class Index extends Controller
      * @return \think\Response
      */
     public function musicLyric($type,$songId){
-        $songs = model('admin/Song')->findMusicInfo($type,$songId);
-        if ($songs != '' && count($songs) > 0) {
-            $song = $songs[0];
-            $lryic = str_replace("\r\n",'',$song['lrc']);
-            $lryic = str_replace("\n",'',$lryic);
-            return response("var lrcstr ='".$lryic."'");
-        } else {
-            return response("var lrcstr =''");
+        // 读取缓存
+        $cache = Cache::get('musicLyric'.$type.$songId);
+        $script = "var lrcstr =''";
+        if(!$cache){
+            $songs = model('admin/Song')->findMusicInfo($type,$songId);
+            if ($songs != '' && count($songs) > 0) {
+                $song = $songs[0];
+                $lryic = str_replace("\r\n",'',$song['lrc']);
+                $lryic = str_replace("\n",'',$lryic);
+                $script = "var lrcstr ='".$lryic."'";
+            }
+            // 设置缓存
+            Cache::set('musicLyric'.$type.$songId,$script);
         }
+        return response($cache ? $cache : $script);
     }
 }

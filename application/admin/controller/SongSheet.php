@@ -13,6 +13,7 @@ use app\common\controller\BackendBaseController;
 use ilt\MusicApi;
 use ilt\Random;
 use think\Db;
+use think\facade\Cache;
 use think\facade\Session;
 
 /**
@@ -55,6 +56,17 @@ class SongSheet extends BackendBaseController
      */
     public function edit()
     {
+        $songSheetId = $this->request->post('id');
+
+        // 清除缓存
+        $players = $this->model->songSheetPlayers($songSheetId);
+        if(count($players) > 0){
+            foreach ($players as $value){
+                // 删除api缓存
+                Cache::rm('info'.$value->player_id);
+            }
+        }
+
         $this->model->save([
             'type' => $this->request->post('type'),
             'sheet_id' => $this->request->post('sheet_id', ''),
@@ -62,7 +74,7 @@ class SongSheet extends BackendBaseController
             'author' => $this->request->post('author'),
             'create_time' => date("Y-m-d H:i:s"),
             'user_id' => Session::get('loginUser')['id']
-        ], ['id' => $this->request->post('id')]);
+        ], ['id' => $songSheetId]);
 
         $this->success('编辑歌单成功！');
     }
@@ -144,6 +156,15 @@ class SongSheet extends BackendBaseController
      */
     public function editSongSheetSong($jsonData, $songSheetId)
     {
+        // 清除缓存
+        $players = $this->model->songSheetPlayers($songSheetId);
+        if(count($players) > 0){
+            foreach ($players as $value){
+                // 删除api缓存
+                Cache::rm('info'.$value->player_id);
+            }
+        }
+
         // 删除播放器之前的歌曲
         $songModel = model('Song');
         $songModel->where('song_sheet_id', $songSheetId)->delete();

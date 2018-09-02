@@ -22,4 +22,9 @@ class SongSheet extends Model
     public function songs(){
         return $this->hasMany('Song','song_sheet_id');
     }
+
+    // 查询歌单关联的播放器
+    public function songSheetPlayers($songSheetId){
+        return model('PlayerSongSheet')->where('song_sheet_id',$songSheetId)->select();
+    }
 }
