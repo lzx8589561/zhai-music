@@ -1103,7 +1103,8 @@ class MusicApi
                                 'author' => $radio_author,
                                 'lrc' => !empty($radio_lrc['lrc']) ? $radio_lrc['lrc']['lyric'] : '',
                                 'url' => MC_INTERNAL ? $radio_urls[$radio_song_id] : 'http://music.163.com/song/media/outer/url?id=' . $radio_song_id . '.mp3',
-                                'pic' => $value['album']['picUrl'] . '?param=300x300'
+                                'pic' => $value['album']['picUrl'] . '?param=300x300',
+                                'album_name' => $value['album']['name']
                             ];
                         }
                     }

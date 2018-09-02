@@ -24,6 +24,8 @@ Route::get('/admin/','admin/index/index');
 // 播放器详情
 Route::get('/admin/player/:id','admin/player/index');
 
+// 名称搜索歌曲
+Route::post('/admin/songSheet/searchSong','admin/SongSheet/searchSong');
 // id搜索歌曲
 Route::post('/admin/songSheet/selSong','admin/SongSheet/selSong');
 // 保存歌单歌曲

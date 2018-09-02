@@ -112,6 +112,27 @@ class SongSheet extends BackendBaseController
     }
 
     /**
+     * 搜索歌曲
+     * @param $type string 歌曲类型
+     * @param $songName string 歌曲名称
+     * @param int $page int 页码
+     */
+    public function searchSong($type, $songName,$page = 1){
+        $musicApi = new MusicApi();
+        $songs = [];
+        switch ($type) {
+            case 'wy':
+                $songs = $musicApi->mc_get_song_by_name($songName,'netease',$page);
+                break;
+            case  'kg':
+                break;
+            case 'qq':
+                break;
+        }
+        $this->success('获取成功！','',$songs);
+    }
+
+    /**
      * 保存歌单歌曲
      * @param $jsonData string json数据
      * @param $songSheetId string 歌单id
