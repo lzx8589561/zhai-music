@@ -23,8 +23,22 @@ composer install
 创建数据库
 ```
 字符编码：utf8 -- UTF-8 Unicode
-```
 导入数据库脚本，脚本位置extend/database
+```
+### 伪静态配置
+#### nginx
+```
+  location / {
+      index  index.htm index.html index.php;
+      #访问路径的文件不存在则重写URL转交给ThinkPHP处理
+      if (!-e $request_filename) {
+         rewrite  ^/(.*)$  /index.php?s=$1  last;
+         break;
+      }
+  }
+```
+#### apache
+项目自带apache静态化无需配置
 ### 启动项目
 - 添加public为web根目录
 - 若为apache服务器则默认伪静态，nginx可自行配置伪静态
