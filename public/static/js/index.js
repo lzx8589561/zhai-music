@@ -63,12 +63,8 @@ layui.config({
         	return false;
 		}
 
-        $.post("/user/updPwdSave.do", {beforePwd:beforePwd,newPwd:newPwd}, function (data) {
-            if (data.success) {
-                layer.alert(data.success);
-            } else {
-                layer.alert(data.error);
-            }
+        $.post("/admin/user/resetPwd", {beforePwd:beforePwd,newPwd:newPwd}, function (data) {
+            layer.alert(data.msg ? data.msg : '操作失败！');
         });
         return false;
     });

@@ -1,0 +1,43 @@
+{extend name="common/base" /}
+{block name="right"}
+<div class="layui-body" style="bottom: 0;border-left: solid 2px #1AA094;" id="admin-body">
+    <div style="padding:10px;">
+        <div class="site-content">
+            <h1 class="site-h1">修改密码</h1>
+            <div class="layui-elem-quote">
+                <p>密码最少6位数，建议大写+小写+数字以便保护你的账户安全</p>
+            </div>
+            <div class="pass-form">
+                <form class="layui-form form-container" method="post">
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">旧密码</label>
+                        <div class="layui-input-block">
+                            <input type="password" id="beforePwd" required="" lay-verify="required" placeholder="请输入之前的密码" autocomplete="off" class="layui-input">
+                        </div>
+                    </div>
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">新密码</label>
+                        <div class="layui-input-block">
+                            <input type="password" id="newPwd" required="" lay-verify="required" placeholder="请输入新的密码" autocomplete="off" class="layui-input">
+                        </div>
+                    </div>
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">确认密码</label>
+                        <div class="layui-input-block">
+                            <input type="password" id="chkPwd" required="" lay-verify="required" placeholder="请在输入一次密码" autocomplete="off" class="layui-input">
+                        </div>
+                    </div>
+                    <div class="layui-input-block">
+                        <div class="layui-input-block">
+                            <button class="layui-btn" id="submit" lay-submit lay-filter="updPwd">立即修改</button>
+                            <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{/block}
+{block name="script"}
+{/block}

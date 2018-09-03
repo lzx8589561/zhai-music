@@ -65,6 +65,12 @@ class User extends BackendBaseController
         $password = md5($this->request->post('password'));
         $qq = $this->request->post('qq');
 
+        // 查询是否存在重复用户名
+        $users = $this->model->where('username',$username)->select();
+        if(count($users) > 0){
+            $this->error('用户名已被使用！');
+        }
+
         // 持久化
         $this->model->save([
             'id' => Random::uuid(),
@@ -84,6 +90,30 @@ class User extends BackendBaseController
     {
         Session::clear();
         $this->success();
+    }
+
+    /**
+     * 重设密码
+     * @param $beforePwd string 老密码
+     * @param $newPwd string 新密码
+     * @return mixed
+     */
+    public function resetPwd($beforePwd = '',$newPwd = ''){
+        $this->getSide();
+        if($this->request->isPost()){
+            $loginUser = Session::get('loginUser');
+            if(md5($beforePwd) != $loginUser['password']){
+                $this->error('原始密码有误！');
+            }
+
+            $md5NewPwd = md5($newPwd);
+            $this->model->save(['password'=>$md5NewPwd],['id'=>$loginUser['id']]);
+            $loginUser['password'] = $md5NewPwd;
+            Session::set('loginUser',$loginUser);
+
+            $this->success('重置成功！');
+        }
+        return $this->fetch();
     }
 
 }

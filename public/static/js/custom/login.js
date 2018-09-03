@@ -111,7 +111,7 @@ $(document).ready(function() {
 				alert(data.msg);
 				location.href = "/";
 			} else {
-				alert('注册失败！');
+				alert(data.msg ? data.msg : '注册失败！');
 			}
 		});
 	});
