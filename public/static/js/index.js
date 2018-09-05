@@ -118,6 +118,50 @@ layui.config({
 
 
 });
+function delPlayer(id) {
+    layui.config({
+        base: 'js/'
+    }).use(['layer'], function() {
+        var $ = layui.jquery,
+            layer = layui.layer;
+        layer.confirm('确定要删除播放器？', {
+            btn: ['确定','取消'] //按钮
+        }, function(){
+            $.post("/admin/player/del", {id:id}, function (data) {
+                if (data.code === 1) {
+                    layer.alert(data.msg);
+                    location.replace('/admin/');
+                } else {
+                    layer.alert('删除失败！');
+                }
+                layer.close(index);
+            });
+        }, function(){
+        });
+    });
+}
+function delSongSheet(id) {
+    layui.config({
+        base: 'js/'
+    }).use(['layer'], function() {
+        var $ = layui.jquery,
+            layer = layui.layer;
+        layer.confirm('确定要删除歌单？', {
+            btn: ['确定','取消'] //按钮
+        }, function(){
+            $.post("/admin/songSheet/del", {id:id}, function (data) {
+                if (data.code === 1) {
+                    layer.alert(data.msg);
+                    location.replace('/admin/');
+                } else {
+                    layer.alert('删除失败！');
+                }
+                layer.close(index);
+            });
+        }, function(){
+        });
+    });
+}
 
 function lock($, layer) {
 	//自定页

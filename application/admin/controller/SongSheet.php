@@ -180,4 +180,17 @@ class SongSheet extends BackendBaseController
 
         $this->success('保存成功！');
     }
+
+    /**
+     * 删除歌单
+     * @param $id string 歌单id
+     * @throws \Exception
+     */
+    public function del($id){
+        // 删除歌单关联项
+        model('PlayerSongSheet')->where('song_sheet_id',$id)->delete();
+        // 删除歌单
+        $this->model->get($id)->delete();
+        $this->success('删除成功！');
+    }
 }

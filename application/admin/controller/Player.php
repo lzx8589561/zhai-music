@@ -51,10 +51,16 @@ class Player extends BackendBaseController
 
     /**
      * 删除播放器
+     * @param $id string 播放器id
+     * @throws \Exception
      */
-    public function del()
+    public function del($id)
     {
-
+        // 删除歌单关联项
+        model('PlayerSongSheet')->where('player_id',$id)->delete();
+        // 删除播放器
+        $this->model->get($id)->delete();
+        $this->success('删除成功！');
     }
 
     /**

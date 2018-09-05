@@ -37,6 +37,8 @@ Route::post('/admin/songSheet/add','admin/SongSheet/add');
 Route::post('/admin/songSheet/edit','admin/SongSheet/edit');
 // 歌单首页
 Route::get('/admin/songSheet/:id','admin/SongSheet/index');
+// 删除歌单
+Route::post('/admin/songSheet/del','admin/SongSheet/del');
 
 // 获取播放器接口
 Route::get('/api/info','api/Index/info');

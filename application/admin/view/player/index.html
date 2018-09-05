@@ -150,7 +150,7 @@
                                 <div class="layui-tab-item">
                                     <div style="margin: 10px 0;">
                                         <span style="color: #777777;">将此段代码插入到body标签之前</span>
-                                        <textarea class="layui-textarea"><script id="ilt" src="https://player.ilt.me/player/js/player.js" key="{$entity.id}"></script></textarea>
+                                        <textarea id="script_code" class="layui-textarea"></textarea>
                                     </div>
                                 </div>
                                 <div class="layui-form-item">
@@ -176,6 +176,9 @@
         var element = layui.element(),
             $ = layui.jquery,
             form = layui.form();
+        $('#script_code').val('<script id="ilt" src="'+(document.location.protocol === "http:" ? "http" : "https")+'://'
+            +document.location.host+'/player/js/player.js" key="{$entity.id}"><\/script>');
+
         layer = layui.layer;
         form.on('submit(*)', function (data) {
             $.post("/admin/player/edit", data.field, function (data) {
