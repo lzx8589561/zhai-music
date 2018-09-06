@@ -78,7 +78,7 @@
                                                    placeholder="请输入歌单作者" autocomplete="off" class="layui-input">
                                         </div>
                                     </div>
-                                    <div class="layui-input-block">
+                                    <div class="layui-input-block save-button">
                                         <button class="layui-btn" lay-submit lay-filter="save">保存配置</button>
                                     </div>
                                 </div>
@@ -121,6 +121,7 @@
                                                        autocomplete="off" class="layui-input">
                                             </div>
                                         </div>
+                                        <div style="overflow-x: scroll;white-space:nowrap;">
                                         <table class="layui-table">
                                             <thead>
                                             <tr>
@@ -136,6 +137,7 @@
                                             </tr>
                                             </tbody>
                                         </table>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -154,12 +156,6 @@
         'qq':'qq',
         'kugou':'kg'
     };
-    if ('{$entity.type}' === 'wygd') {
-        $(".sdtj_option").hide()
-        $("#sheetIdDiv").show();
-        $("#type").val("{entity.type}");
-    }
-
     layui.config({
         base: 'js/'
     }).use(['element', 'layer', 'form'], function () {
@@ -167,6 +163,13 @@
             $ = layui.jquery,
             form = layui.form();
         layer = layui.layer;
+
+        if ('{$entity.type}' === 'wygd') {
+            $(".sdtj_option").hide()
+            $("#sheetIdDiv").show();
+            $("#type").val("{entity.type}");
+        }
+
         form.on('submit(addSong)', function (data) {
             songType = $("#songType").val();
             songId = $("#songId").val();

@@ -1220,6 +1220,9 @@ header.larry-personal-tit span {
 
 /* 适配多设备 */
 @media screen and (max-width: 750px) {
+    .save-button{
+        margin-left: 0;
+    }
     .layui-main {
         width: auto;
         margin: 0 10px;
@@ -1459,7 +1462,7 @@ header.larry-personal-tit span {
         height: 350px;
     }
 
-    .admin-side-toggle, .admin-header-item {
+    .admin-side-toggle{
         display: none;
     }
 

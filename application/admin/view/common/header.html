@@ -14,7 +14,7 @@
             </li>-->
             <li class="layui-nav-item">
                 <a href="javascript:;" class="admin-header-user">
-                    <img src="https://cn.gravatar.com/avatar/b68b42b6b330e9b86b920cdec8a401d2?s=80&d=mm&r=g"/>
+                    <img src="https://q1.qlogo.cn/g?b=qq&nk={$Think.session.loginUser.qq ? $Think.session.loginUser.qq : 1 }&s=100"/>
                     <span>{$Think.session.loginUser.username}</span>
                 </a>
                 <dl class="layui-nav-child">
@@ -31,11 +31,6 @@
                         <a href="/admin/user/logout"><i class="fa fa-sign-out" aria-hidden="true"></i> 注销</a>
                     </dd>
                 </dl>
-            </li>
-        </ul>
-        <ul class="layui-nav admin-header-item-mobile">
-            <li class="layui-nav-item">
-                <a href="/user/logout"><i class="fa fa-sign-out" aria-hidden="true"></i> 注销</a>
             </li>
         </ul>
     </div>
