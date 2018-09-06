@@ -167,7 +167,8 @@
         if ('{$entity.type}' === 'wygd') {
             $(".sdtj_option").hide()
             $("#sheetIdDiv").show();
-            $("#type").val("{entity.type}");
+            $("#type").val("{$entity.type}");
+            form.render('select'); //刷新select选择框渲染
         }
 
         form.on('submit(addSong)', function (data) {
@@ -226,7 +227,6 @@
                 data["sheet_id"] = sheetId;
             } else {
                 data["type"] = type;
-                data["sheet_id"] = "sdtj";
             }
 
             $.post("/admin/songSheet/edit", data, function (data) {
