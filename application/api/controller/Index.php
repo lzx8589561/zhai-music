@@ -157,6 +157,7 @@ class Index extends Controller
                 $song = $songs[0];
                 $lryic = str_replace("\r\n",'',$song['lrc']);
                 $lryic = str_replace("\n",'',$lryic);
+                $lryic = str_replace("'","\'",$lryic);
                 $script = "var lrcstr ='".$lryic."'";
             }
             // 设置缓存
