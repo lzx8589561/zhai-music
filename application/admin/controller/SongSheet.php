@@ -38,7 +38,7 @@ class SongSheet extends BackendBaseController
      */
     public function index($id)
     {
-
+        $this->checkSongSheetRole($id);
         // 获取实例
         $this->getSide();
         $entity = $this->model->get($id);
@@ -57,6 +57,7 @@ class SongSheet extends BackendBaseController
     public function edit()
     {
         $songSheetId = $this->request->post('id');
+        $this->checkSongSheetRole($songSheetId);
 
         // 清除缓存
         $players = $this->model->songSheetPlayers($songSheetId);
@@ -156,6 +157,7 @@ class SongSheet extends BackendBaseController
      */
     public function editSongSheetSong($jsonData, $songSheetId)
     {
+        $this->checkSongSheetRole($songSheetId);
         // 清除缓存
         $players = $this->model->songSheetPlayers($songSheetId);
         if(count($players) > 0){
@@ -187,6 +189,7 @@ class SongSheet extends BackendBaseController
      * @throws \Exception
      */
     public function del($id){
+        $this->checkSongSheetRole($id);
         // 删除歌单关联项
         model('PlayerSongSheet')->where('song_sheet_id',$id)->delete();
         // 删除歌单

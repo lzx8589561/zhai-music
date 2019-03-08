@@ -35,8 +35,8 @@ if (navigator.userAgent.match(/(iPhone|iPod|Android|ios|Nokia|Black Berry|MIDP|P
 } else {
     localStorage.setItem("isLoad", "true");
 
-    // var webURL = 'https://player.ilt.me/';
-    var webURL = '/';
+    // var webURL = 'http://pplayer.ilt.me/';
+   var webURL = '/';
     var keyId = $("#ilt").attr("key");
     $("head").append('<link rel="stylesheet" type="text/css" href="' + webURL + 'player/css/player.css">');
     $("head").append('<link href="https://libs.baidu.com/fontawesome/4.2.0/css/font-awesome.css" rel="stylesheet" type="text/css">');

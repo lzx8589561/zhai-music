@@ -17,6 +17,7 @@ use think\facade\Session;
 class BackendBaseController extends Controller
 {
     protected $model = null;
+    static protected $roleCheckFailMsg = '搞事情';
 
     /**
      * 无需登录的方法
@@ -38,6 +39,30 @@ class BackendBaseController extends Controller
 //                $url = $url ? $url : $this->request->url();
                 $this->error('Please login first', '/admin/user/login');
             }
+        }
+    }
+
+    /**
+     * 检查播放器是否属于用户
+     */
+    protected function checkPlayerRole($playerId){
+        $playerModel = model('Player');
+        $player = $playerModel->where('user_id',Session::get('loginUser')['id'])
+            ->where('id',$playerId)->find();
+        if($player == null) {
+            $this->error(self::$roleCheckFailMsg);
+        }
+    }
+
+    /**
+     * 检查歌单是否属于用户
+     */
+    protected function checkSongSheetRole($songSheetId){
+        $songSheetModel = model('SongSheet');
+        $songSheet = $songSheetModel->where('user_id',Session::get('loginUser')['id'])
+            ->where('id',$songSheetId)->find();
+        if($songSheet == null) {
+            $this->error(self::$roleCheckFailMsg);
         }
     }
 

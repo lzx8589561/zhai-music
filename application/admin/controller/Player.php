@@ -56,6 +56,7 @@ class Player extends BackendBaseController
      */
     public function del($id)
     {
+        $this->checkPlayerRole($id);
         // 删除歌单关联项
         model('PlayerSongSheet')->where('player_id',$id)->delete();
         // 删除播放器
@@ -73,6 +74,7 @@ class Player extends BackendBaseController
      */
     public function index($id)
     {
+        $this->checkPlayerRole($id);
         $this->getSide();
 
         $entity = $this->model->get($id);
@@ -98,6 +100,7 @@ class Player extends BackendBaseController
      * @throws \think\exception\PDOException
      */
     public function editPlayerSongSheet($playerId){
+        $this->checkPlayerRole($playerId);
         // 删除api缓存
         Cache::rm('info'.$playerId);
         $ids = $this->request->post('ids/a');
@@ -123,6 +126,7 @@ class Player extends BackendBaseController
      */
     public function edit()
     {
+       $this->checkPlayerRole($this->request->post('id'));
         // 删除api缓存
         Cache::rm('info'.$this->request->post('id'));
 
