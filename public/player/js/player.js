@@ -410,6 +410,7 @@ if (navigator.userAgent.match(/(iPhone|iPod|Android|ios|Nokia|Black Berry|MIDP|P
                 songFrom33 = '关闭';
                 $songFrom4.html('<i class="fa fa-toggle-off" title="打开歌词"></i>')
             }
+            musicTooltip();
         });
         lzxPlayer.playList = {
             creat: {
@@ -825,6 +826,7 @@ function musicTooltip() {
         $('#tooltip').remove();
         if (this.title) {
             var a = this.title;
+            $(this).unbind("mouseover mouseout");
             $(this).mouseover(function (b) {
                 this.title = '';
                 $('body').append('<div id="tooltip">' + a + '</div>');
