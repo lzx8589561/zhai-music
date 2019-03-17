@@ -7,6 +7,8 @@
 - 数据库：mysql
 
 ## 安装
+### 视频安装教程
+https://www.bilibili.com/video/av46476706
 ### 依赖
 - composer
 - php 5.6+
