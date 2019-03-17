@@ -43,18 +43,25 @@ if (navigator.userAgent.match(/(iPhone|iPod|Android|ios|Nokia|Black Berry|MIDP|P
 
     $("body").append("<div id=\"lzxPlayer\">\n" +
         "    <div class=\"player\">\n" +
-        "<canvas class=\"blur-img\" width=\"365\" height=\"155\" id=\"canvas\">\n" +
-        "\t\t\t您的浏览器不支持canvas，请更换高级版的浏览器！\n" +
-        "\t\t</canvas>" +
+        "        <canvas class=\"blur-img\" width=\"365\" height=\"155\" id=\"canvas\">您的浏览器不支持canvas，请更换高级版的浏览器！</canvas>\n" +
         "        <div class=\"blur-img\">\n" +
-        "            <img src=\"#\" class=\"blur\" style=\"top: 0px; display: inline;\">\n" +
-        "        </div>\n" +
+        "            <img src=\"#\" class=\"blur\" style=\"top: 0px; display: inline;\"></div>\n" +
         "        <div class=\"infos\">\n" +
-        "            <div class=\"songstyle\"><i class=\"fa fa-music\"></i> <span class=\"song\"></span></div>\n" +
-        "            <div class=\"timestyle\"><i class=\"fa fa-clock-o\"></i> <span class=\"time\">00:00 / 00:00</span></div>\n" +
-        "            <div class=\"artiststyle\"><i class=\"fa fa-user\"></i> <span class=\"artist\"></span><span class=\"moshi\"><i\n" +
-        "                    class=\"loop fa fa-random current\"></i> 随机播放</span></div>\n" +
-        "            <div class=\"artiststyle\"><i class=\"fa fa-folder\"></i>\n" +
+        "            <div class=\"songstyle\">\n" +
+        "                <i class=\"fa fa-music\"></i>\n" +
+        "                <span class=\"song\"></span>\n" +
+        "            </div>\n" +
+        "            <div class=\"timestyle\">\n" +
+        "                <i class=\"fa fa-clock-o\"></i>\n" +
+        "                <span class=\"time\">00:00 / 00:00</span></div>\n" +
+        "            <div class=\"artiststyle\">\n" +
+        "                <i class=\"fa fa-user\"></i>\n" +
+        "                <span class=\"artist\"></span>\n" +
+        "                <span class=\"moshi\">\n" +
+        "                    <i class=\"loop fa fa-random current\"></i>随机播放</span>\n" +
+        "            </div>\n" +
+        "            <div class=\"artiststyle\">\n" +
+        "                <i class=\"fa fa-folder\"></i>\n" +
         "                <span class=\"artist1\"></span>\n" +
         "                <span class=\"geci\"></span>\n" +
         "            </div>\n" +
@@ -67,20 +74,24 @@ if (navigator.userAgent.match(/(iPhone|iPod|Android|ios|Nokia|Black Berry|MIDP|P
         "                    <i class=\"play fa fa-play\" title=\"播放\"></i>\n" +
         "                    <i class=\"pause fa fa-pause\" title=\"暂停\"></i>\n" +
         "                </b>\n" +
-        "<div id=\"div1\" class=\"note\"><i class=\"fa fa-music\" aria-hidden=\"true\"></i></div>\n" +
-        "<div id=\"div2\" class=\"note\"><i class=\"fa fa-music\" aria-hidden=\"true\"></i></div>\n" +
-        "<div id=\"div3\" class=\"note\"><i class=\"fa fa-music\" aria-hidden=\"true\"></i></div>\n" +
+        "                <div id=\"div1\" class=\"note\">\n" +
+        "                    <i class=\"fa fa-music\" aria-hidden=\"true\"></i>\n" +
+        "                </div>\n" +
+        "                <div id=\"div2\" class=\"note\">\n" +
+        "                    <i class=\"fa fa-music\" aria-hidden=\"true\"></i>\n" +
+        "                </div>\n" +
+        "                <div id=\"div3\" class=\"note\">\n" +
+        "                    <i class=\"fa fa-music\" aria-hidden=\"true\"></i>\n" +
+        "                </div>\n" +
         "            </div>\n" +
         "            <i class=\"next fa fa-forward\" title=\"下一首\"></i>\n" +
         "            <i class=\"random fa fa-random current\" title=\"随机播放\"></i>\n" +
         "        </div>\n" +
         "        <div class=\"musicbottom\">\n" +
-        "            <div class=\"volume\">\n" +
-        "                <i class=\"mute fa fa-volume-off\"></i>\n" +
-        "                <i class=\"volumeup fa fa-volume-up\"></i>\n" +
+        "            <div class=\"rate\">\n" +
         "                <div class=\"progress\">\n" +
-        "                    <div class=\"volume-on ts5\">\n" +
-        "                        <div class=\"drag\" title=\"音量\"></div>\n" +
+        "                    <div class=\"rate-on\" style=\"width: 0;\">\n" +
+        "                        <div class=\"drag\"></div>\n" +
         "                    </div>\n" +
         "                </div>\n" +
         "            </div>\n" +
@@ -91,7 +102,19 @@ if (navigator.userAgent.match(/(iPhone|iPod|Android|ios|Nokia|Black Berry|MIDP|P
         "                <i class=\"fa fa-toggle-on\" title=\"关闭歌词\"></i>\n" +
         "            </div>\n" +
         "            <div class=\"switch-down\">\n" +
-        "                <a class=\"down\"><i class=\"fa fa-cloud-download\" title=\"歌曲下载\"></i></a>\n" +
+        "                <a class=\"down\">\n" +
+        "                    <i class=\"fa fa-cloud-download\" title=\"歌曲下载\"></i>\n" +
+        "                </a>\n" +
+        "            </div>\n" +
+        "            <div class=\"new-volume\">\n" +
+        "                <i class=\"volumeup fa fa-volume-up\" title=\"音量\"></i>\n" +
+        "                <div class=\"volume-controls\" style=\"\">\n" +
+        "                    <div class=\"slider\" data-direction=\"vertical\">\n" +
+        "                        <div class=\"progress2\" style=\"height: 66%;\">\n" +
+        "                            <div class=\"drag\" id=\"volume-drag\"></div>\n" +
+        "                        </div>\n" +
+        "                    </div>\n" +
+        "                </div>\n" +
         "            </div>\n" +
         "        </div>\n" +
         "        <div class=\"cover\"></div>\n" +
@@ -103,7 +126,10 @@ if (navigator.userAgent.match(/(iPhone|iPod|Android|ios|Nokia|Black Berry|MIDP|P
         "                <div class=\"list\"></div>\n" +
         "            </div>\n" +
         "            <div class=\"song-list\">\n" +
-        "                <div class=\"musicheader\"><i class=\"fa fa-angle-right\"></i><span></span></div>\n" +
+        "                <div class=\"musicheader\">\n" +
+        "                    <i class=\"fa fa-angle-right\"></i>\n" +
+        "                    <span></span>\n" +
+        "                </div>\n" +
         "                <div class=\"list\">\n" +
         "                    <ul></ul>\n" +
         "                </div>\n" +
@@ -137,6 +163,8 @@ if (navigator.userAgent.match(/(iPhone|iPod|Android|ios|Nokia|Black Berry|MIDP|P
             $songFrom2 = $('.player .moshi', $player),
             $songFrom3 = $('.player .geci', $player),
             $songFrom4 = $('.player .switch-ksclrc', $player),
+            $volumeSlider = $('.volume-controls .slider', $player);
+            $rateSlider = $('.rate .progress', $player);
             songFrom33 = '开启',
             songFrom44 = '',
             songFrom55 = '',
@@ -150,10 +178,15 @@ if (navigator.userAgent.match(/(iPhone|iPod|Android|ios|Nokia|Black Berry|MIDP|P
             songId = 0,
             songTotal = 0,
             random = true,
+            rateIsDown = false,
             hasgeci = true;
 
         function lzxCicle() {
             $songTime.text(formatSecond(audio.currentTime) + ' / ' + formatSecond(audio.duration));
+            if(!rateIsDown){
+                $(".rate-on",$rateSlider).width(audio.currentTime / audio.duration * 100+"%");
+            }
+
             if (audio.currentTime < audio.duration / 2) {
                 $btns.css('background-image', 'linear-gradient(90deg, ' + roundcolor
                     + ' 50%, transparent 50%, transparent), linear-gradient('
@@ -211,13 +244,13 @@ if (navigator.userAgent.match(/(iPhone|iPod|Android|ios|Nokia|Black Berry|MIDP|P
                 lzxMedia.next();
             },
             seeking: function () {
-                clearInterval(cicleTime);
-                $player.removeClass('playing');
+                // clearInterval(cicleTime);
+                // $player.removeClass('playing');
                 lzxTips.show('加载中...')
             },
             volumechange: function () {
                 var vol = window.parseInt(audio.volume * 100);
-                $('.volume-on', $player).width(vol + '%');
+                $('.progress2', $volumeSlider).height(vol + '%');
                 //lzxTips.show('音量：' + vol + '%');
                 $.cookie("lzx_player_volume", audio.volume);
             },
@@ -343,34 +376,48 @@ if (navigator.userAgent.match(/(iPhone|iPod|Android|ios|Nokia|Black Berry|MIDP|P
             $.cookie("random_play", false)
         });
         //音量组件拖动事件
-        var $progress = $('.progress', $player);
-        $progress.click(function (e) {
-            var progressWidth = $progress.width(),
-                progressOffsetLeft = $progress.offset().left;
-            volume = ((e.clientX - progressOffsetLeft) / progressWidth).toFixed(2);
-            audio.volume = volume
+        $volumeSlider.click(function (e) {
+            var documentTop = $(document).scrollTop();
+            var progressHeight = $volumeSlider.height(),
+                progressOffsetTop = $volumeSlider.offset().top - documentTop;
+            audio.volume = (1 - (e.clientY - progressOffsetTop) / progressHeight).toFixed(2);
+        });
+        $rateSlider.click(function (e) {
+            var progressWidth = $rateSlider.width(),
+                progressOffsetLeft = $rateSlider.offset().left,
+                eClientX = e.clientX;
+
+            audio.currentTime = audio.duration * ((eClientX - progressOffsetLeft) / progressWidth)
         });
         var isDown = false;
-        $('.drag', $progress).mousedown(function () {
+        $('.drag', $volumeSlider).mousedown(function () {
             isDown = true;
-            $('.volume-on', $progress).removeClass('ts5')
+        });
+
+        $('.drag', $rateSlider).mousedown(function () {
+            rateIsDown = true;
         });
         $(window).on({
             mousemove: function (e) {
                 if (isDown) {
-                    var progressWidth = $progress.width(),
-                        progressOffsetLeft = $progress.offset().left,
-                        eClientX = e.clientX;
-                    if (eClientX >= progressOffsetLeft && eClientX <= progressOffsetLeft + progressWidth) {
-                        $('.volume-on', $progress).width((eClientX - progressOffsetLeft) / progressWidth * 100 + '%');
-                        volume = ((eClientX - progressOffsetLeft) / progressWidth).toFixed(2);
-                        audio.volume = volume
+                    var documentTop = $(document).scrollTop();
+                    var progressHeight = $volumeSlider.height(),
+                        progressOffsetTop = $volumeSlider.offset().top - documentTop,
+                        eClientY = e.clientY;
+                    if(eClientY >= progressOffsetTop && eClientY <= progressOffsetTop + progressHeight){
+                        audio.volume = (1 - (eClientY - progressOffsetTop) / progressHeight).toFixed(2);
                     }
+                }else if(rateIsDown){
+                    var progressWidth = $rateSlider.width(),
+                        progressOffsetLeft = $rateSlider.offset().left,
+                        eClientX = e.clientX;
+                    $(".rate-on",$rateSlider).width((eClientX - progressOffsetLeft) / progressWidth * 100 + '%');
+                    audio.currentTime = audio.duration * ((eClientX - progressOffsetLeft) / progressWidth)
                 }
             },
             mouseup: function () {
                 isDown = false;
-                $('.volume-on', $progress).addClass('ts5')
+                rateIsDown = false;
             }
         });
         //播放列表按钮点击事件
@@ -624,10 +671,9 @@ if (navigator.userAgent.match(/(iPhone|iPod|Android|ios|Nokia|Black Berry|MIDP|P
                     audio.volume = volume;
                 }
 
-                //修复音量为100%显示出现问题
-                if (volume == 1) {
-                    $('.volume-on', $player).width('100%');
-                }
+                // 防止百分百音量无触发事件
+                lzxMedia.volumechange();
+
                 albumId = defaultAlbum - 1;
 
                 if (showLrc == 0) {

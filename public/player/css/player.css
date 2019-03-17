@@ -262,6 +262,51 @@ ul, li {
     line-height: 25px
 }
 
+/*进度开始----------------------------------------------------*/
+#lzxPlayer .player .musicbottom .rate {
+    position: absolute;
+    left: 6px;
+    top: 6px;
+    color: #cccbce;
+}
+
+#lzxPlayer .player .musicbottom .rate .mute {
+    float: left
+}
+
+#lzxPlayer .player .musicbottom .rate .volumeup {
+    float: right
+}
+
+#lzxPlayer .player .musicbottom .rate .progress {
+    position: relative;
+    width: 180px;
+    margin-top: 4.5px;
+    height: 4px;
+    background-color: #b0aeb2;
+    overflow: visible;
+}
+
+#lzxPlayer .player .musicbottom .rate .progress .rate-on {
+    position: relative;
+    background-color: #81c300;
+    width: 0;
+    height: 4px;
+}
+
+#lzxPlayer .player .musicbottom .rate .progress .rate-on .drag {
+    width: 16px;
+    height: 16px;
+    position: absolute;
+    top: -6px;
+    right: -5px;
+    background-color: #fff;
+    border-radius: 50%;
+    box-shadow: 0 0 1px 1px rgba(0, 0, 0, 0.2);
+    cursor: url(link.cur), pointer;
+}
+/*进度结束----------------------------------------------------*/
+
 #lzxPlayer .player .musicbottom .volume {
     position: absolute;
     left: 6px;
@@ -307,15 +352,14 @@ ul, li {
 }
 
 #lzxPlayer .player .musicbottom .switch-playlist {
-    position: absolute;
+    float: right;
     -webkit-transition: .5s;
     -moz-transition: .5s;
     -ms-transition: .5s;
     transition: .5s;
-    top: 6px;
-    line-height: 10px;
-    right: 10px;
-    cursor: url(link.cur), pointer
+    cursor: url(link.cur), pointer;
+    width: 25px;
+    text-align: center;
 }
 
 #lzxPlayer .player .musicbottom .switch-playlist:hover {
@@ -323,19 +367,36 @@ ul, li {
 }
 
 #lzxPlayer .player .musicbottom .switch-ksclrc {
-    position: absolute;
     -webkit-transition: .5s;
     -moz-transition: .5s;
     -ms-transition: .5s;
     transition: .5s;
-    top: 6px;
-    line-height: 10px;
     right: 35px;
     font-size: 1.2em;
-    cursor: url(link.cur), pointer
+    cursor: url(link.cur), pointer;
+    width: 25px;
+    float: right;
+    text-align: center;
 }
 
 #lzxPlayer .player .musicbottom .switch-ksclrc:hover {
+    color: #81c300
+}
+
+#lzxPlayer .player .musicbottom .new-volume {
+    -webkit-transition: .5s;
+    -moz-transition: .5s;
+    -ms-transition: .5s;
+    transition: .5s;
+    font-size: 1.2em;
+    cursor: url(link.cur), pointer;
+    width: 25px;
+    float: right;
+    text-align: center;
+    position: relative;
+}
+
+#lzxPlayer .player .musicbottom .new-volume:hover {
     color: #81c300
 }
 
@@ -358,17 +419,16 @@ ul, li {
 }
 
 #lzxPlayer .player .musicbottom .switch-down {
-    position: absolute;
+    float: right;
     -webkit-transition: .5s;
     -moz-transition: .5s;
     -ms-transition: .5s;
     transition: .5s;
-    top: 6px;
-    line-height: 10px;
-    right: 65px;
     font-size: 1.2em;
     display: none;
-    cursor: url(link.cur), pointer
+    cursor: url(link.cur), pointer;
+    text-align: center;
+    width: 25px;
 }
 
 #lzxPlayer .player .musicbottom .switch-down .fa {
@@ -1545,4 +1605,54 @@ ul, li {
     height:50px;
     position:absolute;
     z-index:1999;
+}
+
+.new-volume .volume-controls{
+    width: 30px;
+    height: 135px;
+    background-color: rgba(0, 0, 0, 0.62);
+    border-radius: 7px;
+    position: absolute;
+    left: -3px;
+    bottom: 25px;
+    flex-direction: column;
+    align-items: center;
+    display: none;
+    z-index: 999999;
+}
+
+.new-volume .volume-controls .slider{
+    margin-top: 12px;
+    margin-bottom: 12px;
+    width: 6px;
+    border-radius: 3px;
+    flex-grow: 1;
+    background-color: #D8D8D8;
+    cursor: url(link.cur), pointer;
+    position: relative;
+}
+.new-volume .volume-controls .slider .progress2{
+    bottom: 0;
+    height: 100%;
+    width: 6px;
+    background-color: #81c300;
+    border-radius: inherit;
+    position: absolute;
+    pointer-events: none;
+}
+
+.new-volume .volume-controls .slider .progress2 .drag{
+    left: -5px;
+    top: -8px;
+    height: 16px;
+    width: 16px;
+    border-radius: 8px;
+    background-color: #81c300;
+    position: absolute;
+    pointer-events: all;
+    box-shadow: 0px 1px 1px 0px rgba(0, 0, 0, 0.32);
+}
+
+.new-volume:hover .volume-controls{
+    display:flex;
 }
