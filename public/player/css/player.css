@@ -63,13 +63,14 @@ ul, li {
     user-select: none;
     position: absolute;
     background-color: #fff;
-    border: 3px #fff solid;
     width: 115px;
     height: 115px;
-    top: 20px;
-    left: 115px;
+    top: 50%;
+    left: 50%;
     border-radius: 50%;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+    margin-top: -67.5px;
+    margin-left: -57.5px;
 }
 
 #lzxPlayer .player .cover:after {
@@ -137,16 +138,20 @@ ul, li {
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
-    bottom: -110px;
+    bottom: 30px;
     text-shadow: none;
-    position: relative;
+    position: absolute;
     z-index: 99999;
     font-size: 1.8em;
     color: #fff;
     padding: 0 10px;
+    height: 40px;
+    overflow: auto;
+    width: 100%;
+    box-sizing: border-box;
 }
 
-#lzxPlayer .player .control .loop, #lzxPlayer .player .control .prev, #lzxPlayer .player .control .status{
+#lzxPlayer .player .control .loop, #lzxPlayer .player .control .prev{
     margin-right: 25px;
     cursor: url(link.cur), pointer;
 }
@@ -188,20 +193,24 @@ ul, li {
     color: #81c300
 }
 
-#lzxPlayer .player .control .status {
-    position: relative;
+#lzxPlayer .player .status {
     display: inline-block;
     vertical-align: middle;
-    bottom: 50px;
-    left: 39px;
     width: 44px;
     height: 44px;
+    /*overflow: hidden;*/
     border-radius: 50%;
     background-color: #81c300;
     background-image: linear-gradient(90deg, #6c6971 50%, transparent 50%, transparent), linear-gradient(90deg, #81c300 50%, #6c6971 50%, #6c6971);
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    z-index: 99999;
+    margin-top: -32px;
+    margin-left: -22px;
 }
 
-#lzxPlayer .player .control .status b {
+#lzxPlayer .player .status b {
     position: absolute;
     width: 40px;
     height: 40px;
@@ -215,18 +224,18 @@ ul, li {
     overflow: hidden
 }
 
-#lzxPlayer .player .control .status b .fa {
+#lzxPlayer .player .status b .fa {
     display: block;
     width: 40px;
     height: 40px;
     line-height: 40px
 }
 
-#lzxPlayer .player .control .status b .fa:hover {
+#lzxPlayer .player .status b .fa:hover {
     color: #f30
 }
 
-#lzxPlayer .player .control .status b .play {
+#lzxPlayer .player .status b .play {
     color: #f30;
     -webkit-transition: .5s;
     -moz-transition: .5s;
@@ -234,18 +243,18 @@ ul, li {
     transition: .5s
 }
 
-#lzxPlayer .player .control .status b .play:hover {
+#lzxPlayer .player .status b .play:hover {
     color: #81c300
 }
 
-#lzxPlayer .player .control .status b .pause {
+#lzxPlayer .player .status b .pause {
     -webkit-transition: .5s;
     -moz-transition: .5s;
     -ms-transition: .5s;
     transition: .5s
 }
 
-#lzxPlayer .player .control .status b .pause:hover {
+#lzxPlayer .player .status b .pause:hover {
     color: #81c300
 }
 
@@ -782,14 +791,14 @@ ul, li {
     transform: translate3d(0, 0, 0)
 }
 
-#lzxPlayer.playing .player .control .status b {
+#lzxPlayer.playing .player .status b {
     border-width: 0;
     top: 2px;
     left: 2px;
     z-index:2000;
 }
 
-#lzxPlayer.playing .player .control .status b .play {
+#lzxPlayer.playing .player .status b .play {
     margin-top: -40px
 }
 

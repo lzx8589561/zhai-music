@@ -67,22 +67,22 @@ jQuery.cookie=function(b,j,m){if(typeof j!="undefined"){m=m||{};if(j===null){j="
         "        </div>\n" +
         "        <div class=\"control\">\n" +
         "            <span style='float:left'><i class=\"loop fa fa-retweet\" title=\"顺序播放\"></i> <i class=\"prev fa fa-backward\" title=\"上一首\"></i></span>\n" +
-        "            <div class=\"status\">\n" +
-        "                <b>\n" +
-        "                    <i class=\"play fa fa-play\" title=\"播放\"></i>\n" +
-        "                    <i class=\"pause fa fa-pause\" title=\"暂停\"></i>\n" +
-        "                </b>\n" +
-        "                <div id=\"div1\" class=\"note\">\n" +
-        "                    <i class=\"fa fa-music\" aria-hidden=\"true\"></i>\n" +
-        "                </div>\n" +
-        "                <div id=\"div2\" class=\"note\">\n" +
-        "                    <i class=\"fa fa-music\" aria-hidden=\"true\"></i>\n" +
-        "                </div>\n" +
-        "                <div id=\"div3\" class=\"note\">\n" +
-        "                    <i class=\"fa fa-music\" aria-hidden=\"true\"></i>\n" +
-        "                </div>\n" +
-        "            </div>\n" +
         "            <span style='float:right'><i class=\"next fa fa-forward\" title=\"下一首\"></i> <i class=\"random fa fa-random current\" title=\"随机播放\"></i></span>\n" +
+        "        </div>\n" +
+        "        <div class=\"status\">\n" +
+        "            <b>\n" +
+        "                <i class=\"play fa fa-play\" title=\"播放\"></i>\n" +
+        "                <i class=\"pause fa fa-pause\" title=\"暂停\"></i>\n" +
+        "            </b>\n" +
+        "            <div id=\"div1\" class=\"note\">\n" +
+        "                <i class=\"fa fa-music\" aria-hidden=\"true\"></i>\n" +
+        "            </div>\n" +
+        "            <div id=\"div2\" class=\"note\">\n" +
+        "                <i class=\"fa fa-music\" aria-hidden=\"true\"></i>\n" +
+        "            </div>\n" +
+        "            <div id=\"div3\" class=\"note\">\n" +
+        "                <i class=\"fa fa-music\" aria-hidden=\"true\"></i>\n" +
+        "            </div>\n" +
         "        </div>\n" +
         "        <div class=\"musicbottom\">\n" +
         "            <div class=\"rate\">\n" +
