@@ -32,10 +32,10 @@ ul, li {
     -moz-transition: .5s;
     -ms-transition: .5s;
     transition: .5s;
-    left: -365px;
+    left: -345px;
     text-align: left;
     color: #38343e;
-    width: 365px;
+    width: 345px;
     position: fixed;
     bottom: 40px;
     box-shadow: 0 0 5px 5px rgba(0, 0, 0, 0.2);
@@ -45,7 +45,6 @@ ul, li {
     padding: 0;
     list-style: none;
     font-family: "Microsoft YaHei", "微软雅黑", "Trebuchet MS", Arial, Verdana, Tahoma, sans-serif;
-
 }
 
 #lzxPlayer .player {
@@ -68,7 +67,7 @@ ul, li {
     width: 115px;
     height: 115px;
     top: 20px;
-    left: 125px;
+    left: 115px;
     border-radius: 50%;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
 }
@@ -109,8 +108,10 @@ ul, li {
 #lzxPlayer .player .infos {
     position: absolute;
     top: 15px;
-    left: 10px;
-    color: #fff
+    color: #fff;
+    width: 100%;
+    padding: 0 15px;
+    box-sizing: border-box;
 }
 
 #lzxPlayer .player .infos .artiststyle {
@@ -137,17 +138,21 @@ ul, li {
     -ms-user-select: none;
     user-select: none;
     bottom: -110px;
-    left: 10px;
     text-shadow: none;
     position: relative;
     z-index: 99999;
     font-size: 1.8em;
-    color: #fff
+    color: #fff;
+    padding: 0 10px;
 }
 
-#lzxPlayer .player .control .loop, #lzxPlayer .player .control .prev, #lzxPlayer .player .control .status, #lzxPlayer .player .control .next, #lzxPlayer .player .control .random {
-    left: 10px;
-    margin-right: 26px;
+#lzxPlayer .player .control .loop, #lzxPlayer .player .control .prev, #lzxPlayer .player .control .status{
+    margin-right: 25px;
+    cursor: url(link.cur), pointer;
+}
+
+#lzxPlayer .player .control .next,#lzxPlayer .player .control .random{
+    margin-left: 25px;
     cursor: url(link.cur), pointer;
 }
 
@@ -159,7 +164,6 @@ ul, li {
     position: relative;
     display: inline-block;
     vertical-align: middle;
-    left: 80px
 }
 
 #lzxPlayer .player .control .next:hover {
@@ -178,7 +182,6 @@ ul, li {
     position: relative;
     display: inline-block;
     vertical-align: middle;
-    left: 80px
 }
 
 #lzxPlayer .player .control .random:hover {
@@ -190,10 +193,10 @@ ul, li {
     display: inline-block;
     vertical-align: middle;
     bottom: 50px;
-    left: 40px;
+    left: 39px;
     width: 44px;
     height: 44px;
-    /* overflow: hidden; */
+    overflow: hidden;
     border-radius: 50%;
     background-color: #81c300;
     background-image: linear-gradient(90deg, #6c6971 50%, transparent 50%, transparent), linear-gradient(90deg, #81c300 50%, #6c6971 50%, #6c6971);
@@ -265,7 +268,7 @@ ul, li {
 /*进度开始----------------------------------------------------*/
 #lzxPlayer .player .musicbottom .rate {
     position: absolute;
-    left: 6px;
+    left: 15px;
     top: 6px;
     color: #cccbce;
 }
@@ -645,10 +648,10 @@ ul, li {
 }
 
 #lzxPlayer.show {
-    -webkit-transform: translate3d(365px, 0, 0);
+    -webkit-transform: translate3d(345px, 0, 0);
     -moz-transform: translate3d(365px, 0, 0);
     -ms-transform: translate3d(365px, 0, 0);
-    transform: translate3d(365px, 0, 0)
+    transform: translate3d(345px, 0, 0);
 }
 
 #lzxPlayer.show .switch-player {
@@ -1535,7 +1538,7 @@ ul, li {
 }
 
 .blur-img {
-    width: 365px;
+    width: 345px;
     height: 155px;
     position: absolute;
 }
@@ -1655,4 +1658,7 @@ ul, li {
 
 .new-volume:hover .volume-controls{
     display:flex;
+}
+#lzxLrc.phone li{
+    font-size:1.0em;
 }
