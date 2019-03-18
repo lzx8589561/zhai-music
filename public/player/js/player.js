@@ -57,7 +57,7 @@ jQuery.cookie=function(b,j,m){if(typeof j!="undefined"){m=m||{};if(j===null){j="
         "                <i class=\"fa fa-user\"></i>\n" +
         "                <span class=\"artist\"></span>\n" +
         "                <span class=\"moshi\">\n" +
-        "                    <i class=\"loop fa fa-random current\"></i>随机播放</span>\n" +
+        "                    <i class=\"loop fa fa-random current\"></i> 随机播放</span>\n" +
         "            </div>\n" +
         "            <div class=\"artiststyle\">\n" +
         "                <i class=\"fa fa-folder\"></i>\n" +
