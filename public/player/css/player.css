@@ -196,7 +196,6 @@ ul, li {
     left: 39px;
     width: 44px;
     height: 44px;
-    overflow: hidden;
     border-radius: 50%;
     background-color: #81c300;
     background-image: linear-gradient(90deg, #6c6971 50%, transparent 50%, transparent), linear-gradient(90deg, #81c300 50%, #6c6971 50%, #6c6971);
