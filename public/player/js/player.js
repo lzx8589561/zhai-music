@@ -692,6 +692,15 @@ jQuery.cookie=function(b,j,m){if(typeof j!="undefined"){m=m||{};if(j===null){j="
     // 喂狗
     setInterval(function(){
         localStorage.setItem("lastFeed", new Date().getTime().toString());
+        // 检查css变量
+        var currPlayerWidth = document.body.style.getPropertyValue('--player-width');
+        if(typeof playerWidth != "undefined" && playerWidth !== -1 && currPlayerWidth != (playerWidth + 'px')){
+            document.body.style.setProperty('--player-width', playerWidth + 'px');
+        }
+        var currCoverWidth = document.body.style.getPropertyValue('--cover-width');
+        if(typeof coverWidth != "undefined" && coverWidth !== -1  && currCoverWidth != (coverWidth + 'px')){
+            document.body.style.setProperty('--cover-width', coverWidth + 'px');
+        }
     },1000);
 
     // 浏览器关闭事件监听器
