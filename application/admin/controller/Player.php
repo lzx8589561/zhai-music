@@ -44,7 +44,7 @@ class Player extends BackendBaseController
             'show_greeting'=> 1,
             'background'=> 1,
             'default_volume'=> 75,
-            'default_album'=> 0,
+            'default_album'=> 1,
             'show_lrc'=> 1]);
         $this->success('添加播放器成功！');
     }
@@ -140,7 +140,12 @@ class Player extends BackendBaseController
             'background'=> $this->request->post('background',0),
             'default_volume'=> $this->request->post('default_volume',100),
             'default_album'=> $this->request->post('default_album',0),
-            'show_lrc'=> $this->request->post('show_lrc',0)],
+            'show_lrc'=> $this->request->post('show_lrc',0),
+            'player_width'=> $this->request->post('player_width',-1),
+            'cover_width'=> $this->request->post('cover_width',-1),
+            'show_notes'=> $this->request->post('show_notes',-1),
+            'auto_popup_player'=> $this->request->post('auto_popup_player',-1),
+        ],
             ['id'=> $this->request->post('id')]);
         $this->success('编辑成功！');
     }

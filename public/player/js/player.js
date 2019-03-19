@@ -3,9 +3,9 @@
  * author: Zing(IT技术宅)
  * qq: 8589561
  * motto: php是世界上最好的语言(开个玩笑😂)
- * version: 2.0
+ * version: 2.1.0
  * webSite: http://www.ilt.me
- * time: 2018/09/02
+ * time: 2019/03/19
  * disclaimer: 插件修改于明月浩空免费版，仅用于学习交流，无商业价值
  *             如发现商业传播，将禁止软件的免费使用
  */
@@ -140,6 +140,9 @@ jQuery.cookie=function(b,j,m){if(typeof j!="undefined"){m=m||{};if(j===null){j="
         "<div id=\"lzxTips\"></div>\n" +
         "<div id=\"lzxLrc\"></div>");
 
+    // 全局主色
+    mainColor = '0,0,0';
+
     var audio = new Audio(),
         $player = $('#lzxPlayer'),
         $tips = $('#lzxTips'),
@@ -196,6 +199,7 @@ jQuery.cookie=function(b,j,m){if(typeof j!="undefined"){m=m||{};if(j===null){j="
 
     var lzxMedia = {
         play: function () {
+            $cover.addClass('coverplay');
             $player.addClass('playing');
             // 播放进度更新秒表
             cicleTime = setInterval(function(){
@@ -355,7 +359,8 @@ jQuery.cookie=function(b,j,m){if(typeof j!="undefined"){m=m||{};if(j===null){j="
         var documentTop = $(document).scrollTop();
         var progressHeight = $volumeSlider.height(),
             progressOffsetTop = $volumeSlider.offset().top - documentTop;
-        audio.volume = (1 - (e.clientY - progressOffsetTop) / progressHeight).toFixed(2);
+        var calcVolume = (1 - (e.clientY - progressOffsetTop) / progressHeight).toFixed(2);
+        audio.volume = calcVolume > 1 ? 1 : calcVolume;
     });
     $rateSlider.click(function (e) {
         var progressWidth = $rateSlider.width(),
@@ -414,7 +419,7 @@ jQuery.cookie=function(b,j,m){if(typeof j!="undefined"){m=m||{};if(j===null){j="
         if (!$('#lzxLrc').hasClass('hide')) {
             ycgeci = true;
             if (hasLrc) {
-                $songFrom3.html('<i class="fa fa-check-circle"></i> Lrc歌词开启')
+                $songFrom3.html('<i class="fa fa-check-circle"></i> 歌词开启')
             }
             lzxTips.show('开启歌词显示');
             songFrom33 = '开启';
@@ -422,7 +427,7 @@ jQuery.cookie=function(b,j,m){if(typeof j!="undefined"){m=m||{};if(j===null){j="
         } else {
             ycgeci = false;
             if (hasLrc) {
-                $songFrom3.html('<i class="fa fa-times-circle"></i> Lrc歌词关闭');
+                $songFrom3.html('<i class="fa fa-times-circle"></i> 歌词关闭');
             }
             lzxTips.show('歌词显示已关闭');
             songFrom33 = '关闭';
@@ -501,9 +506,9 @@ jQuery.cookie=function(b,j,m){if(typeof j!="undefined"){m=m||{};if(j===null){j="
             $('#lzxLrc,#lzxKsc').html('');
             setTimeout(function () {
                 if (hasgeci) {
-                    $songFrom3.html('<i class="fa fa-check-circle"></i> Lrc歌词' + songFrom33)
+                    $songFrom3.html('<i class="fa fa-check-circle"></i> 歌词' + songFrom33)
                 } else {
-                    $songFrom3.html('<i class="fa fa-times-circle"></i> Lrc歌词' + songFrom33)
+                    $songFrom3.html('<i class="fa fa-times-circle"></i> 歌词' + songFrom33)
                 }
                 $('.switch-down').css('right', '65px');
                 $('.switch-ksclrc').show();
@@ -522,9 +527,9 @@ jQuery.cookie=function(b,j,m){if(typeof j!="undefined"){m=m||{};if(j===null){j="
                             if (lrcstr.indexOf('[00') >= 0) {
                                 setTimeout(function () {
                                         if (!$('#lzxLrc').hasClass('hide')) {
-                                            songFrom44 = ' - Lrc歌词获取成功!'
+                                            songFrom44 = ' - 歌词获取成功!'
                                         } else {
-                                            songFrom44 = ' - Lrc歌词已关闭！'
+                                            songFrom44 = ' - 歌词已关闭！'
                                         }
                                         lzxLrc.lrc.format(lrcstr)
                                     },
@@ -565,7 +570,7 @@ jQuery.cookie=function(b,j,m){if(typeof j!="undefined"){m=m||{};if(j===null){j="
                     var timer = formatTime(lrcCont[i]);
                     lrcTimeLine.push(timer);
                     if (i == 1) {
-                        lrcLine += '<li class="lzxLrc' + timer + ' current">' + lrcCont[i + 1] + '</li>'
+                        lrcLine += '<li class="lzxLrc' + timer + ' current" style="color:rgba(' + mainColor + ',1)">' + lrcCont[i + 1] + '</li>'
                     } else {
                         lrcLine += '<li class="lzxLrc' + timer + '">' + lrcCont[i + 1] + '</li>'
                     }
@@ -587,7 +592,8 @@ jQuery.cookie=function(b,j,m){if(typeof j!="undefined"){m=m||{};if(j===null){j="
                 if ($.inArray(timeNow, lrcTimeLine) > 0) {
                     var $lineNow = $('.lzxLrc' + timeNow);
                     if (!$lineNow.hasClass(cur)) {
-                        $lineNow.addClass(cur).siblings().removeClass(cur);
+                        $lineNow.css('color','rgba(' + mainColor + ',1)');
+                        $lineNow.addClass(cur).siblings().removeClass(cur).css('color','');
                         $('#lzxLrc').animate({
                             scrollTop: lrcHeight * $lineNow.index()
                         });
@@ -613,6 +619,21 @@ jQuery.cookie=function(b,j,m){if(typeof j!="undefined"){m=m||{};if(j===null){j="
         type: 'GET',
         dataType: 'script',
         success: function () {
+            if(playerWidth !== -1){
+                document.body.style.setProperty('--player-width', playerWidth + 'px');
+            }
+            if(coverWidth !== -1){
+                document.body.style.setProperty('--cover-width', coverWidth + 'px');
+            }
+            if(showNotes !== 1){
+                $(".status .note",$player).hide()
+            }
+            if(autoPopupPlayer !== -1){
+                setTimeout(function () {
+                    $player.addClass('show')
+                },autoPopupPlayer * 1000)
+            }
+
             if ($.cookie("random_play") != null) {
                 if ($.cookie("random_play") == "true") {
                     $('.loop', $player).removeClass(cur);
@@ -650,7 +671,7 @@ jQuery.cookie=function(b,j,m){if(typeof j!="undefined"){m=m||{};if(j===null){j="
 
                 ycgeci = false;
                 if (hasLrc) {
-                    $songFrom3.html('<i class="fa fa-times-circle"></i> Lrc歌词关闭');
+                    $songFrom3.html('<i class="fa fa-times-circle"></i> 歌词关闭');
                 }
                 lzxTips.show('歌词显示已关闭');
                 songFrom33 = '关闭';
@@ -673,14 +694,10 @@ jQuery.cookie=function(b,j,m){if(typeof j!="undefined"){m=m||{};if(j===null){j="
         localStorage.setItem("lastFeed", new Date().getTime().toString());
     },1000);
 
-
     // 浏览器关闭事件监听器
-    window.addEventListener('beforeunload', beforeUnloadHandler, true);
-
-    function beforeUnloadHandler(event) {
+    window.addEventListener('beforeunload', function(event){
         localStorage.setItem("isLoad", "false");
-    }
-
+    }, true);
 
     function LimitStr(str, num, t) {
         num = num || 6;
@@ -729,7 +746,6 @@ jQuery.cookie=function(b,j,m){if(typeof j!="undefined"){m=m||{};if(j===null){j="
                     playerColor()
                 },
                 error: function () {
-                    var cont = '0,0,0';
                     playerColor()
                 }
             })
@@ -776,7 +792,7 @@ jQuery.cookie=function(b,j,m){if(typeof j!="undefined"){m=m||{};if(j===null){j="
                     $songFrom3.html('<i class="fa fa-times-circle"></i> 歌词暂时隐藏');
                     $songFrom4.html('<i class="fa fa-toggle-off" title="歌词暂时隐藏"></i>');
                     if (hasLrc) {
-                        lzxTips.show('Lrc歌词自动隐藏')
+                        lzxTips.show('歌词自动隐藏')
                     }
                 }
             } else {
@@ -785,7 +801,7 @@ jQuery.cookie=function(b,j,m){if(typeof j!="undefined"){m=m||{};if(j===null){j="
                     $('#lzxLrc').removeClass('hide');
                     $('#lzxKsc').removeClass('hidePlayer');
                     if (hasLrc) {
-                        $songFrom3.html('<i class="fa fa-check-circle"></i> Lrc歌词开启')
+                        $songFrom3.html('<i class="fa fa-check-circle"></i> 歌词开启')
                     }
                     $songFrom4.html('<i class="fa fa-toggle-on" title="关闭歌词"></i>')
                 }
@@ -797,7 +813,6 @@ jQuery.cookie=function(b,j,m){if(typeof j!="undefined"){m=m||{};if(j===null){j="
     function startPlay() {
         lzxTips.show('开始从' + songFrom55 + '播放 - ' + songSheetList[albumId].songNames[songId]);
         audio.play();
-        $cover.addClass('coverplay');
     }
 
     function allmusic() {
@@ -810,18 +825,18 @@ jQuery.cookie=function(b,j,m){if(typeof j!="undefined"){m=m||{};if(j===null){j="
 
     function playerColor() {
         $player.css({
-            background: 'rgba(' + cont + ',.8)'
+            background: 'rgba(' + mainColor + ',.8)'
         });
         $switchPlayer.css({
-            background: 'rgba(' + cont + ',.3)'
+            background: 'rgba(' + mainColor + ',.3)'
         });
         $tips.css({
-            background: 'rgba(' + cont + ',.6)'
+            background: 'rgba(' + mainColor + ',.6)'
         });
         $lk.css({
-            background: 'rgba(' + cont + ',.3)'
+            background: 'rgba(' + mainColor + ',.3)'
         });
-        $(".infos,.control", $player).css({
+        $(".infos,.control,.status .note", $player).css({
             color: 'rgb(' + font_color + ')'
         });
     }

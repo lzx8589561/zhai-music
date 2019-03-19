@@ -49,7 +49,11 @@ class Index extends Controller
         $result .= "showGreeting = ".$player->show_greeting.",";
         $result .= "defaultAlbum = ".$player->default_album.",";
         $result .= "siteName = '".$player->site_name."',";
-        $result .= "background = ".$player->background.";";
+        $result .= "background = ".$player->background.",";
+        $result .= "playerWidth = ".$player->player_width.",";
+        $result .= "coverWidth = ".$player->cover_width.",";
+        $result .= "showNotes = ".$player->show_notes.",";
+        $result .= "autoPopupPlayer = ".$player->auto_popup_player.";";
         // 获取播放器歌单
         $playerSongSheets = $playerModel->songSheets($id);
         // 获取歌单歌曲
@@ -97,7 +101,7 @@ class Index extends Controller
         if($cache){
             return response($cache);
         }
-        $result = "var cont =";
+        $result = "var mainColor =";
         if($url != null && $url != ''){
             list($r,$g,$b) = ImageUtils::mainColor($url);
             $result .= "'".$r.",".$g.",".$b."'";

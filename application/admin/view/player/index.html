@@ -1,5 +1,12 @@
 {extend name="common/base" /}
 {block name="right"}
+<style>
+    .layui-elem-quote{
+        margin-top: 15px;
+        margin-bottom: 5px;
+        padding: 10px;
+    }
+</style>
 <div class="layui-body" style="bottom: 0;border-left: solid 2px #1AA094;" id="admin-body">
     <div style="padding:10px;">
         <div class="layui-larry-box col-6">
@@ -122,6 +129,13 @@
                                                    {$entity.background== "1" ? "checked":""}>
                                         </div>
                                     </div>
+                                    <div class="layui-form-item">
+                                        <label class="layui-form-label">飘动音符</label>
+                                        <div class="layui-input-block">
+                                            <input type="checkbox" name="show_notes" lay-skin="switch" value="1"
+                                                   {$entity.show_notes== "1" ? "checked":""}>
+                                        </div>
+                                    </div>
                                 </div>
                                 <div class="layui-tab-item">
                                     <div class="layui-form-item">
@@ -144,6 +158,30 @@
                                         <div class="layui-input-block">
                                             <input type="checkbox" name="show_lrc" lay-skin="switch" value="1"
                                                    {$entity.show_lrc== "1" ? "checked":""}>
+                                        </div>
+                                    </div>
+                                    <blockquote class="layui-elem-quote layui-text">单位"px" -1表示使用默认播放器宽度，默认350px</blockquote>
+                                    <div class="layui-form-item">
+                                        <label class="layui-form-label">播放器宽度</label>
+                                        <div class="layui-input-block">
+                                            <input type="text" name="player_width" value="{$entity.player_width}"
+                                                   placeholder="播放器宽度" autocomplete="off" class="layui-input">
+                                        </div>
+                                    </div>
+                                    <blockquote class="layui-elem-quote layui-text">单位"px" -1表示使用默认专辑图宽度，默认115px</blockquote>
+                                    <div class="layui-form-item">
+                                        <label class="layui-form-label">专辑图宽度</label>
+                                        <div class="layui-input-block">
+                                            <input type="text" name="cover_width" value="{$entity.cover_width}"
+                                                   placeholder="专辑图宽度" autocomplete="off" class="layui-input">
+                                        </div>
+                                    </div>
+                                    <blockquote class="layui-elem-quote layui-text">单位"秒" -1表示不弹出</blockquote>
+                                    <div class="layui-form-item">
+                                        <label class="layui-form-label">几秒后弹出</label>
+                                        <div class="layui-input-block">
+                                            <input type="text" name="auto_popup_player" value="{$entity.auto_popup_player}"
+                                                   placeholder="几秒后弹出" autocomplete="off" class="layui-input">
                                         </div>
                                     </div>
                                 </div>
