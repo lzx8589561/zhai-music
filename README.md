@@ -5,7 +5,8 @@
 - 后端：thinkphp 5.1
 - 前端：layui
 - 数据库：mysql
-
+## 演示站
+https://player.ilt.me/
 ## 安装
 ### 视频安装教程
 https://www.bilibili.com/video/av46476706
