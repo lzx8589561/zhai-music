@@ -537,7 +537,8 @@ ul, li {
     -ms-user-select: none;
     user-select: none;
     height: 305px;
-    width: 400px;
+    width: 365px;
+    width: calc(var(--player-width) + 15px);
     weight: 100%;
     overflow: hidden;
     -webkit-transform-origin: 50% 100px;
@@ -619,7 +620,8 @@ ul, li {
 }
 
 #lzxPlayer .playlist .list:hover {
-    width: 365px
+    width: 350px;
+    width: var(--player-width)
 }
 
 #lzxPlayer .playlist .list:hover .mCSB_scrollTools {
