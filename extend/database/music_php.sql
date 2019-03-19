@@ -1,18 +1,3 @@
-/*
-Navicat MySQL Data Transfer
-
-Source Server         : localhost_3306
-Source Server Version : 50547
-Source Host           : 127.0.0.1:3306
-Source Database       : music_php
-
-Target Server Type    : MYSQL
-Target Server Version : 50547
-File Encoding         : 65001
-
-Date: 2018-09-02 10:02:19
-*/
-
 SET FOREIGN_KEY_CHECKS=0;
 
 -- ----------------------------
@@ -32,6 +17,10 @@ CREATE TABLE `player` (
   `show_greeting` int(1) DEFAULT NULL COMMENT '是否显示欢迎语',
   `default_album` int(3) DEFAULT NULL COMMENT '默认专辑',
   `background` int(1) DEFAULT NULL COMMENT '模糊背景是否开启',
+  `player_width` int(11) DEFAULT '-1' COMMENT '播放器宽度',
+  `cover_width` int(11) DEFAULT '-1' COMMENT '封面图宽度',
+  `show_notes` int(1) DEFAULT '1' COMMENT '显示音符：0不显示1显示',
+  `auto_popup_player` int(11) DEFAULT '-1' COMMENT '几秒后弹出音符：-1不弹出 >0秒后弹出',
   `create_time` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -39,7 +28,6 @@ CREATE TABLE `player` (
 -- ----------------------------
 -- Records of player
 -- ----------------------------
-INSERT INTO `player` VALUES ('2e086053d2f44e79a489e38085e9edb6', '我的播放器', '1', '0', '1', '80', '1', 'IT技术宅', '欢迎光临寒舍！', '1', '0', '1', null);
 
 -- ----------------------------
 -- Table structure for player_song_sheet
@@ -54,7 +42,6 @@ CREATE TABLE `player_song_sheet` (
 -- ----------------------------
 -- Records of player_song_sheet
 -- ----------------------------
-INSERT INTO `player_song_sheet` VALUES ('2e086053d2f44e79a489e38085e9edb6', '367e5a67e63d40d4898d22fdcdc889d7', '0');
 
 -- ----------------------------
 -- Table structure for song
@@ -78,11 +65,6 @@ CREATE TABLE `song` (
 -- ----------------------------
 -- Records of song
 -- ----------------------------
-INSERT INTO `song` VALUES ('8d571066fc0547baaa334d324d40fb60', '566442496', '367e5a67e63d40d4898d22fdcdc889d7', '浪人琵琶', 'wy', '胡66', '胡66', 'http://p1.music.126.net/G5YxAyt9812z9MROfWarkg==/109951163318974870.jpg?param=300x300', null, null, '4');
-INSERT INTO `song` VALUES ('913ea1c36fa94408b304859162beb8ea', '001EzHH003Zw8Z', '367e5a67e63d40d4898d22fdcdc889d7', '贫穷或富有', 'qq', '贫穷或富有', '李荣浩', 'http://y.gtimg.cn/music/photo_new/T002R300x300M000000nHX4F1OiYhL.jpg', null, null, '0');
-INSERT INTO `song` VALUES ('bc35fc9bb1014d5cbe8d2318e311450c', '428116208', '367e5a67e63d40d4898d22fdcdc889d7', '双截棍 ', 'netease', '周建华作品集', '周建华', 'http://p1.music.126.net/q5iMmP15ItYdcVBgtB0ZCQ==/18684001091229391.jpg?param=300x300', null, null, '3');
-INSERT INTO `song` VALUES ('d1a456fd39024cc8bbcf63c66007510e', '5282665', '367e5a67e63d40d4898d22fdcdc889d7', '爱', 'wy', '飞碟1991-这一年3', '小虎队', 'http://p1.music.126.net/GWn7Q2q9OrUPK50HZ8yC5w==/75866302334129.jpg?param=300x300', null, null, '2');
-INSERT INTO `song` VALUES ('fe82cac5dc35482bb189a4d8d8728751', '3A20D868FAC7AABD11EEEA8474CB47A4', '367e5a67e63d40d4898d22fdcdc889d7', '不想想你', 'kg', 'undefined', '张杰', 'http://imge.kugou.com/stdmusic/150/20180828/20180828211005772299.jpg', null, null, '1');
 
 -- ----------------------------
 -- Table structure for song_sheet
@@ -102,7 +84,6 @@ CREATE TABLE `song_sheet` (
 -- ----------------------------
 -- Records of song_sheet
 -- ----------------------------
-INSERT INTO `song_sheet` VALUES ('367e5a67e63d40d4898d22fdcdc889d7', 'sdtj', 'sdtj', '1', '我喜欢的歌', 'zing', '2018-09-01 17:36:15');
 
 -- ----------------------------
 -- Table structure for user
