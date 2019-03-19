@@ -222,6 +222,7 @@ ul, li {
     margin-top: -32px;
     margin-left: -22px;
     font-size: 20px;
+    cursor: url(link.cur), pointer;
 }
 
 #lzxPlayer .player .status b {
