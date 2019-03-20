@@ -333,6 +333,12 @@ ul, li {
     box-shadow: 0 0 1px 1px rgba(0, 0, 0, 0.2);
     cursor: url(link.cur), pointer;
 }
+#lzxPlayer.phone .player .musicbottom .rate .progress .rate-on .drag{
+    width: 18px;
+    height: 18px;
+    top: -7px;
+    right: -9px;
+}
 /*进度结束----------------------------------------------------*/
 
 #lzxPlayer .player .musicbottom .volume {

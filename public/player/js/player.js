@@ -175,6 +175,7 @@ jQuery.cookie=function(b,j,m){if(typeof j!="undefined"){m=m||{};if(j===null){j="
         songTotal = 0,
         random = true,
         rateIsDown = false,
+        rateTouch = {},
         hasgeci = true,
         songFroms = {
             "wy":"网易音乐",
@@ -204,7 +205,7 @@ jQuery.cookie=function(b,j,m){if(typeof j!="undefined"){m=m||{};if(j===null){j="
             // 播放进度更新秒表
             cicleTime = setInterval(function(){
                 $songTime.text(formatSecond(audio.currentTime) + ' / ' + formatSecond(audio.duration));
-                if(!rateIsDown){
+                if(!rateIsDown || rateTouch.isTouchDown){
                     $(".rate-on",$rateSlider).width(audio.currentTime / audio.duration * 100+"%");
                 }
 
@@ -374,7 +375,6 @@ jQuery.cookie=function(b,j,m){if(typeof j!="undefined"){m=m||{};if(j===null){j="
         isDown = true;
     });
 
-    var rateTouch = {};
     $('.drag', $rateSlider).on("touchstart",(function (e) {
         rateTouch.progressWidth = $rateSlider.width();
         rateTouch.isTouchDown = true;
@@ -412,9 +412,13 @@ jQuery.cookie=function(b,j,m){if(typeof j!="undefined"){m=m||{};if(j===null){j="
         touchmove: function (e) {
             if(rateTouch.isTouchDown){
                 var rate = parseFloat(((e.originalEvent.touches[0].clientX - rateTouch.startX) / rateTouch.progressWidth)
-                    .toFixed(2));
-                $(".rate-on",$rateSlider).width((rate+rateTouch.rateOnWidth) * 100 + '%');
+                    .toFixed(2))+rateTouch.rateOnWidth;
+                if(rate >= 0 && rate <= 1){
+                    $(".rate-on",$rateSlider).width(rate * 100 + '%');
+                    audio.currentTime = audio.duration * rate;
+                }
             }
+            return false;
         },
         touchend:function (e) {
             rateTouch.isTouchDown = false;
