@@ -374,6 +374,14 @@ jQuery.cookie=function(b,j,m){if(typeof j!="undefined"){m=m||{};if(j===null){j="
         isDown = true;
     });
 
+    var rateTouch = {};
+    $('.drag', $rateSlider).on("touchstart",(function (e) {
+        rateTouch.progressWidth = $rateSlider.width();
+        rateTouch.isTouchDown = true;
+        rateTouch.startX = e.originalEvent.touches[0].clientX;
+        rateTouch.rateOnWidth = parseFloat(($(".rate-on",$rateSlider).width() / rateTouch.progressWidth).toFixed(2));
+    }));
+
     $('.drag', $rateSlider).mousedown(function () {
         rateIsDown = true;
     });
@@ -400,6 +408,16 @@ jQuery.cookie=function(b,j,m){if(typeof j!="undefined"){m=m||{};if(j===null){j="
         mouseup: function () {
             isDown = false;
             rateIsDown = false;
+        },
+        touchmove: function (e) {
+            if(rateTouch.isTouchDown){
+                var rate = parseFloat(((e.originalEvent.touches[0].clientX - rateTouch.startX) / rateTouch.progressWidth)
+                    .toFixed(2));
+                $(".rate-on",$rateSlider).width((rate+rateTouch.rateOnWidth) * 100 + '%');
+            }
+        },
+        touchend:function (e) {
+            rateTouch.isTouchDown = false;
         }
     });
     //播放列表按钮点击事件

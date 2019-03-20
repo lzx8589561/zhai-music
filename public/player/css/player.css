@@ -1574,6 +1574,6 @@ ul, li {
 #lzxLrc.phone li{
     font-size:1.0em;
 }
-#lzxPlayer .infos i{
+#lzxPlayer .infos i,#lzxPlayer .status .note i{
     color: inherit;
 }
