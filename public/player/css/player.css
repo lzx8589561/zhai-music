@@ -168,11 +168,13 @@ ul, li {
 #lzxPlayer .player .control .loop, #lzxPlayer .player .control .prev{
     margin-right: 25px;
     cursor: url(link.cur), pointer;
+    color: inherit;
 }
 
 #lzxPlayer .player .control .next,#lzxPlayer .player .control .random{
     margin-left: 25px;
     cursor: url(link.cur), pointer;
+    color: inherit;
 }
 
 #lzxPlayer .player .control i.current {
@@ -1571,4 +1573,7 @@ ul, li {
 }
 #lzxLrc.phone li{
     font-size:1.0em;
+}
+#lzxPlayer .infos i{
+    color: inherit;
 }
