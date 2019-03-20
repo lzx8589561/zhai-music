@@ -44,101 +44,116 @@ jQuery.cookie=function(b,j,m){if(typeof j!="undefined"){m=m||{};if(j===null){j="
     $("head").append('<link rel="stylesheet" type="text/css" href="' + webURL + '/player/css/player.css">');
     $("head").append('<link href="https://libs.baidu.com/fontawesome/4.2.0/css/font-awesome.css" rel="stylesheet" type="text/css">');
 
-    $("body").append("<div id=\"lzxPlayer\">\n" +
-        "    <div class=\"player\">\n" +
-        "        <canvas class=\"blur-img\" width=\"365\" height=\"155\" id=\"canvas\">您的浏览器不支持canvas，请更换高级版的浏览器！</canvas>\n" +
-        "        <div class=\"blur-img\">\n" +
-        "            <img src=\"#\" class=\"blur\" style=\"top: 0; display: inline;\"></div>\n" +
-        "        <div class=\"infos\">\n" +
-        "            <div class=\"songstyle\">\n" +
-        "                <span><i class=\"fa fa-music\"></i> <span class=\"song\"></span></span><span style=\"float: right;\"><i class=\"fa fa-clock-o\"></i> <span class=\"time\">00:00 / 00:00</span></span>\n" +
-        "            </div>\n" +
-        "            <div class=\"artiststyle\">\n" +
-        "                <i class=\"fa fa-user\"></i>\n" +
-        "                <span class=\"artist\"></span>\n" +
-        "                <span class=\"moshi\">\n" +
-        "                    <i class=\"loop fa fa-random current\"></i> 随机播放</span>\n" +
-        "            </div>\n" +
-        "            <div class=\"artiststyle\">\n" +
-        "                <i class=\"fa fa-folder\"></i>\n" +
-        "                <span class=\"artist1\"></span>\n" +
-        "                <span class=\"geci\"></span>\n" +
-        "            </div>\n" +
-        "        </div>\n" +
-        "        <div class=\"control\">\n" +
-        "            <span style='float:left'><i class=\"loop fa fa-retweet\" title=\"顺序播放\"></i> <i class=\"prev fa fa-backward\" title=\"上一首\"></i></span>\n" +
-        "            <span style='float:right'><i class=\"next fa fa-forward\" title=\"下一首\"></i> <i class=\"random fa fa-random current\" title=\"随机播放\"></i></span>\n" +
-        "        </div>\n" +
-        "        <div class=\"status\">\n" +
-        "            <b>\n" +
-        "                <i class=\"play fa fa-play\" title=\"播放\"></i>\n" +
-        "                <i class=\"pause fa fa-pause\" title=\"暂停\"></i>\n" +
-        "            </b>\n" +
-        "            <div id=\"div1\" class=\"note\">\n" +
-        "                <i class=\"fa fa-music\" aria-hidden=\"true\"></i>\n" +
-        "            </div>\n" +
-        "            <div id=\"div2\" class=\"note\">\n" +
-        "                <i class=\"fa fa-music\" aria-hidden=\"true\"></i>\n" +
-        "            </div>\n" +
-        "            <div id=\"div3\" class=\"note\">\n" +
-        "                <i class=\"fa fa-music\" aria-hidden=\"true\"></i>\n" +
-        "            </div>\n" +
-        "        </div>\n" +
-        "        <div class=\"musicbottom\">\n" +
-        "            <div class=\"rate\">\n" +
-        "                <div class=\"progress\">\n" +
-        "                    <div class=\"rate-on\" style=\"width: 0;\">\n" +
-        "                        <div class=\"drag\"></div>\n" +
-        "                    </div>\n" +
-        "                </div>\n" +
-        "            </div>\n" +
-        "            <div class=\"switch-playlist\">\n" +
-        "                <i class=\"fa fa-bars\" title=\"播放列表\"></i>\n" +
-        "            </div>\n" +
-        "            <div class=\"switch-ksclrc\">\n" +
-        "                <i class=\"fa fa-toggle-on\" title=\"关闭歌词\"></i>\n" +
-        "            </div>\n" +
-        "            <div class=\"switch-down\">\n" +
-        "                <a class=\"down\">\n" +
-        "                    <i class=\"fa fa-cloud-download\" title=\"歌曲下载\"></i>\n" +
-        "                </a>\n" +
-        "            </div>\n" +
-        "            <div class=\"new-volume\">\n" +
-        "                <i class=\"volumeup fa fa-volume-up\" title=\"音量\"></i>\n" +
-        "                <div class=\"volume-controls\" style=\"\">\n" +
-        "                    <div class=\"slider\" data-direction=\"vertical\">\n" +
-        "                        <div class=\"progress2\" style=\"height: 66%;\">\n" +
-        "                            <div class=\"drag\" id=\"volume-drag\"></div>\n" +
-        "                        </div>\n" +
-        "                    </div>\n" +
-        "                </div>\n" +
-        "            </div>\n" +
-        "        </div>\n" +
-        "        <div class=\"cover\"></div>\n" +
-        "    </div>\n" +
-        "    <div class=\"playlist\">\n" +
-        "        <div class=\"playlist-bd\">\n" +
-        "            <div class=\"album-list\">\n" +
-        "                <div class=\"musicheader\"></div>\n" +
-        "                <div class=\"list\"></div>\n" +
-        "            </div>\n" +
-        "            <div class=\"song-list\">\n" +
-        "                <div class=\"musicheader\">\n" +
-        "                    <i class=\"fa fa-angle-right\"></i>\n" +
-        "                    <span></span>\n" +
-        "                </div>\n" +
-        "                <div class=\"list\">\n" +
-        "                    <ul></ul>\n" +
-        "                </div>\n" +
-        "            </div>\n" +
-        "        </div>\n" +
-        "    </div>\n" +
-        "    <div class=\"switch-player\">\n" +
-        "        <i class=\"fa fa-angle-right\" style=\"margin-top: 20px;\"></i>\n" +
-        "    </div>\n" +
-        "</div>\n" +
-        "<div id=\"lzxTips\"></div>\n" +
-        "<div id=\"lzxLrc\"></div>");
+    $("body").append('<div id="lzxPlayer">\n' +
+        '    <div class="player">\n' +
+        '        <canvas class="blur-img" width="365" height="155" id="canvas">您的浏览器不支持canvas，请更换高级版的浏览器！</canvas>\n' +
+        '        <div class="blur-img">\n' +
+        '            <img src="#" class="blur" style="top: 0; display: inline;"></div>\n' +
+        '        <div class="infos">\n' +
+        '            <div class="songstyle">\n' +
+        '                <span>\n' +
+        '                    <i class="fa fa-music"></i>\n' +
+        '                    <span class="song"></span>\n' +
+        '                </span>\n' +
+        '                <span style="float: right;">\n' +
+        '                    <i class="fa fa-clock-o"></i>\n' +
+        '                    <span class="time">00:00 / 00:00</span></span>\n' +
+        '            </div>\n' +
+        '            <div class="artiststyle">\n' +
+        '                <i class="fa fa-user"></i>\n' +
+        '                <span class="artist"></span>\n' +
+        '                <span class="moshi">\n' +
+        '                    <i class="loop fa fa-random current"></i> 随机播放</span>\n' +
+        '            </div>\n' +
+        '            <div class="artiststyle">\n' +
+        '                <i class="fa fa-folder"></i>\n' +
+        '                <span class="artist1"></span>\n' +
+        '                <span class="geci"></span>\n' +
+        '            </div>\n' +
+        '        </div>\n' +
+        '        <div class="control">\n' +
+        '            <span style="float:left">\n' +
+        '                <i class="loop fa fa-retweet" title="顺序播放"></i>\n' +
+        '                <i class="prev fa fa-backward" title="上一首"></i>\n' +
+        '            </span>\n' +
+        '            <span style="float:right">\n' +
+        '                <i class="next fa fa-forward" title="下一首"></i>\n' +
+        '                <i class="random fa fa-random current" title="随机播放"></i>\n' +
+        '            </span>\n' +
+        '        </div>\n' +
+        '        <div class="status">\n' +
+        '            <b>\n' +
+        '                <i class="play fa fa-play" title="播放"></i>\n' +
+        '                <i class="pause fa fa-pause" title="暂停"></i>\n' +
+        '            </b>\n' +
+        '            <div id="div1" class="note">\n' +
+        '                <i class="fa fa-music" aria-hidden="true"></i>\n' +
+        '            </div>\n' +
+        '            <div id="div2" class="note">\n' +
+        '                <i class="fa fa-music" aria-hidden="true"></i>\n' +
+        '            </div>\n' +
+        '            <div id="div3" class="note">\n' +
+        '                <i class="fa fa-music" aria-hidden="true"></i>\n' +
+        '            </div>\n' +
+        '        </div>\n' +
+        '        <div class="musicbottom">\n' +
+        '            <div class="rate">\n' +
+        '                <div class="progress">\n' +
+        '                    <div class="rate-buffered"></div>' +
+        '                    <div class="rate-on" style="width: 0;">\n' +
+        '                        <div class="drag"></div>\n' +
+        '                    </div>\n' +
+        '                </div>\n' +
+        '            </div>\n' +
+        '            <div class="icons">\n' +
+        '                <div class="switch-playlist">\n' +
+        '                    <i class="fa fa-bars" title="播放列表"></i>\n' +
+        '                </div>\n' +
+        '                <div class="switch-ksclrc">\n' +
+        '                    <i class="fa fa-toggle-on" title="关闭歌词"></i>\n' +
+        '                </div>\n' +
+        '                <div class="switch-down">\n' +
+        '                    <a class="down">\n' +
+        '                        <i class="fa fa-cloud-download" title="歌曲下载"></i>\n' +
+        '                    </a>\n' +
+        '                </div>\n' +
+        '                <div class="new-volume">\n' +
+        '                    <i class="volumeup fa fa-volume-up" title="音量"></i>\n' +
+        '                    <div class="volume-controls" style="">\n' +
+        '                        <div class="slider" data-direction="vertical">\n' +
+        '                            <div class="progress2" style="height: 66%;">\n' +
+        '                                <div class="drag" id="volume-drag"></div>\n' +
+        '                            </div>\n' +
+        '                        </div>\n' +
+        '                    </div>\n' +
+        '                </div>\n' +
+        '            </div>\n' +
+        '        </div>\n' +
+        '        <div class="cover"></div>\n' +
+        '    </div>\n' +
+        '    <div class="playlist">\n' +
+        '        <div class="playlist-bd">\n' +
+        '            <div class="album-list">\n' +
+        '                <div class="musicheader"></div>\n' +
+        '                <div class="list"></div>\n' +
+        '            </div>\n' +
+        '            <div class="song-list">\n' +
+        '                <div class="musicheader">\n' +
+        '                    <i class="fa fa-angle-right"></i>\n' +
+        '                    <span></span>\n' +
+        '                </div>\n' +
+        '                <div class="list">\n' +
+        '                    <ul></ul>\n' +
+        '                </div>\n' +
+        '            </div>\n' +
+        '        </div>\n' +
+        '    </div>\n' +
+        '    <div class="switch-player">\n' +
+        '        <i class="fa fa-angle-right" style="margin-top: 20px;"></i>\n' +
+        '    </div>\n' +
+        '</div>\n' +
+        '<div id="lzxTips"></div>\n' +
+        '<div id="lzxLrc"></div>');
 
     // 全局主色
     mainColor = '0,0,0';
@@ -160,6 +175,7 @@ jQuery.cookie=function(b,j,m){if(typeof j!="undefined"){m=m||{};if(j===null){j="
         $songFrom3 = $('.player .geci', $player),
         $songFrom4 = $('.player .switch-ksclrc', $player),
         $volumeSlider = $('.volume-controls .slider', $player);
+        $rateBuffered = $('.musicbottom .rate-buffered', $player);
         $rateSlider = $('.rate .progress', $player);
         songFrom33 = '开启',
         songFrom44 = '',
@@ -202,6 +218,7 @@ jQuery.cookie=function(b,j,m){if(typeof j!="undefined"){m=m||{};if(j===null){j="
         play: function () {
             $cover.addClass('coverplay');
             $player.addClass('playing');
+            $rateBuffered.width(0);
             // 播放进度更新秒表
             cicleTime = setInterval(function(){
                 $songTime.text(formatSecond(audio.currentTime) + ' / ' + formatSecond(audio.duration));
@@ -220,6 +237,12 @@ jQuery.cookie=function(b,j,m){if(typeof j!="undefined"){m=m||{};if(j===null){j="
                         + ' 50%, transparent 50%, transparent), linear-gradient(270deg, ' + lightcolor + ' 50%, '
                         + roundcolor + ' 50%, ' + roundcolor + ')')
                 }
+
+                var timeRanges = audio.buffered;
+                // 获取已缓存的时间  timeRanges.end(timeRanges.length - 1)
+
+                // 计算百分比 展示进度
+                $rateBuffered.width(parseInt(timeRanges.end(timeRanges.length - 1) * 100 / audio.duration * 100) / 100 + '%')
             }, 800);
             if (hasLrc) {
                 lrcTime = setInterval(lzxLrc.lrc.play, 500);

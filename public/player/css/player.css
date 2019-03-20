@@ -287,17 +287,27 @@ ul, li {
     width: 100%;
     left: 0;
     bottom: 0;
-    line-height: 25px
+    line-height: 25px;
+    display: flex;
 }
 
 /*进度开始----------------------------------------------------*/
 #lzxPlayer .player .musicbottom .rate {
-    position: absolute;
-    left: 15px;
-    top: 6px;
     color: #cccbce;
+    height: 100%;
+    position: relative;
+    line-height: 100%;
+    overflow: hidden;
+    display: inline-block;
+    padding-left: 15px;
+    box-sizing: border-box;
+    flex: 1;
+    padding-right: 10px;
 }
-
+#lzxPlayer .player .musicbottom .icons{
+    display: inline-block;
+    width:100px
+}
 #lzxPlayer .player .musicbottom .rate .mute {
     float: left
 }
@@ -308,18 +318,21 @@ ul, li {
 
 #lzxPlayer .player .musicbottom .rate .progress {
     position: relative;
-    width: 180px;
-    margin-top: 4.5px;
-    height: 4px;
+    width: 100%;
     background-color: #b0aeb2;
     overflow: visible;
+    vertical-align: sub;
+    display: inline-block;
+    height: 5px;
+    border-radius: 2px;
+    margin: auto;
 }
 
 #lzxPlayer .player .musicbottom .rate .progress .rate-on {
     position: relative;
     background-color: #81c300;
     width: 0;
-    height: 4px;
+    height: 100%;
 }
 
 #lzxPlayer .player .musicbottom .rate .progress .rate-on .drag {
@@ -338,6 +351,16 @@ ul, li {
     height: 18px;
     top: -7px;
     right: -9px;
+}
+#lzxPlayer .musicbottom .rate-buffered{
+    position: absolute;
+    width: 0;
+    background-color: #777777;
+    height: 100%;
+    top: 0;
+    transition-duration: .5s;
+    transition-property: width;
+    transition-timing-function: ease;
 }
 /*进度结束----------------------------------------------------*/
 
