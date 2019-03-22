@@ -5,7 +5,7 @@
  * motto: php是世界上最好的语言(开个玩笑😂)
  * version: 2.2.0
  * webSite: http://www.ilt.me
- * time: 2019/03/19
+ * time: 2019/03/22
  * disclaimer: 插件修改于明月浩空免费版，仅用于学习交流，无商业价值
  *             如发现商业传播，将禁止软件的免费使用
  */
