@@ -3,7 +3,7 @@
  * author: Zing(IT技术宅)
  * qq: 8589561
  * motto: php是世界上最好的语言(开个玩笑😂)
- * version: 2.1.0
+ * version: 2.2.0
  * webSite: http://www.ilt.me
  * time: 2019/03/19
  * disclaimer: 插件修改于明月浩空免费版，仅用于学习交流，无商业价值
@@ -221,8 +221,8 @@ jQuery.cookie=function(b,j,m){if(typeof j!="undefined"){m=m||{};if(j===null){j="
             $rateBuffered.width(0);
             // 播放进度更新秒表
             cicleTime = setInterval(function(){
-                $songTime.text(formatSecond(audio.currentTime) + ' / ' + formatSecond(audio.duration));
-                if(!rateIsDown || rateTouch.isTouchDown){
+                if(!rateIsDown && !rateTouch.isTouchDown){
+                    $songTime.text(formatSecond(audio.currentTime) + ' / ' + formatSecond(audio.duration));
                     $(".rate-on",$rateSlider).width(audio.currentTime / audio.duration * 100+"%");
                 }
 
@@ -242,7 +242,9 @@ jQuery.cookie=function(b,j,m){if(typeof j!="undefined"){m=m||{};if(j===null){j="
                 // 获取已缓存的时间  timeRanges.end(timeRanges.length - 1)
 
                 // 计算百分比 展示进度
-                $rateBuffered.width(parseInt(timeRanges.end(timeRanges.length - 1) * 100 / audio.duration * 100) / 100 + '%')
+                if(timeRanges.length !== 0){
+                    $rateBuffered.width(parseInt(timeRanges.end(timeRanges.length - 1) * 100 / audio.duration * 100) / 100 + '%')
+                }
             }, 800);
             if (hasLrc) {
                 lrcTime = setInterval(lzxLrc.lrc.play, 500);
@@ -287,10 +289,12 @@ jQuery.cookie=function(b,j,m){if(typeof j!="undefined"){m=m||{};if(j===null){j="
             return n >= songTotal ? 0 : n < 0 ? songTotal - 1 : n
         },
         next: function () {
+            clearInterval(cicleTime);
             random ? lzxMedia.getInfos(window.parseInt(Math.random() * songTotal))
                 : lzxMedia.getInfos(lzxMedia.getSongId(songId + 1));
         },
         prev: function () {
+            clearInterval(cicleTime);
             random ? lzxMedia.getInfos(window.parseInt(Math.random() * songTotal))
                 : lzxMedia.getInfos(lzxMedia.getSongId(songId - 1));
         }
@@ -408,6 +412,7 @@ jQuery.cookie=function(b,j,m){if(typeof j!="undefined"){m=m||{};if(j===null){j="
     $('.drag', $rateSlider).mousedown(function () {
         rateIsDown = true;
     });
+    // document.window.addEventListener("mousemove",function(e),{})
     $(window).on({
         mousemove: function (e) {
             if (isDown) {
@@ -438,13 +443,18 @@ jQuery.cookie=function(b,j,m){if(typeof j!="undefined"){m=m||{};if(j===null){j="
                     .toFixed(2))+rateTouch.rateOnWidth;
                 if(rate >= 0 && rate <= 1){
                     $(".rate-on",$rateSlider).width(rate * 100 + '%');
-                    audio.currentTime = audio.duration * rate;
+                    rateTouch.currentTime = audio.duration * rate;
+                    $songTime.text(formatSecond(rateTouch.currentTime) + ' / ' + formatSecond(audio.duration));
+                    e.preventDefault();
                 }
             }
             return false;
         },
         touchend:function (e) {
-            rateTouch.isTouchDown = false;
+            if(rateTouch.isTouchDown){
+                audio.currentTime = rateTouch.currentTime;
+                rateTouch.isTouchDown = false;
+            }
         }
     });
     //播放列表按钮点击事件

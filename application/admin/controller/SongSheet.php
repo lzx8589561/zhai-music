@@ -68,6 +68,21 @@ class SongSheet extends BackendBaseController
             }
         }
 
+        if($this->request->post('type') == 'wygd'){
+            $musicApi = new MusicApi();
+            $songs = $musicApi->netease_playlist($this->request->post('sheet_id', ''));
+            $songModel = model('Song');
+            foreach ($songs as $key => $value){
+                $value['taxis'] = $key;
+                $value['song_sheet_id'] = $songSheetId;
+                $value['id'] = Random::uuid();
+                $songs[$key] = $value;
+
+            }
+            $songModel->where('song_sheet_id', $songSheetId)->delete();
+            $songModel->saveAll($songs, false);
+        }
+
         $this->model->save([
             'type' => $this->request->post('type'),
             'sheet_id' => $this->request->post('sheet_id', ''),

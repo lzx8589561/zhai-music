@@ -1281,6 +1281,39 @@ class MusicApi
         }
     }
 
+    // 网易歌单获取
+    public function netease_playlist($playlistid){
+        $playlist_streams = [
+            'method' => 'POST',
+            'url' => 'http://music.163.com/api/playlist/detail?id='.$playlistid,
+            'referer' => 'http://music.163.com/',
+            'proxy' => false
+        ];
+        $radio_info = json_decode($this->mc_curl($playlist_streams), true);
+        $songs = $radio_info['result']['tracks'];
+
+        $radio_songs = [];
+
+        foreach ($songs as $value) {
+            $radio_song_id = $value['id'];
+            $radio_authors = [];
+            foreach ($value['artists'] as $key => $val) {
+                $radio_authors[] = $val['name'];
+            }
+            $radio_author = implode(',', $radio_authors);
+            $radio_songs[] = [
+                'type' => 'wy',
+                'link' => 'http://music.163.com/#/song?id=' . $radio_song_id,
+                'song_id' => $radio_song_id.'',
+                'name' => $value['name'],
+                'artist_name' => $radio_author,
+                'album_cover' => $value['album']['picUrl'] . '?param=300x300',
+                'album_name' => $value['album']['name']
+            ];
+        }
+        return $radio_songs;
+    }
+
     // jsonp 转 json
     public function jsonp2json($jsonp)
     {

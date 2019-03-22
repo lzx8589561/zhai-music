@@ -3,7 +3,7 @@
  * author: Zing(IT技术宅)
  * qq: 8589561
  * motto: php是世界上最好的语言(开个玩笑😂)
- * version: 2.1.0
+ * version: 2.2.0
  * webSite: http://www.ilt.me
  * time: 2019/03/19
  * disclaimer: 插件修改于明月浩空免费版，仅用于学习交流，无商业价值
@@ -296,7 +296,6 @@ ul, li {
     color: #cccbce;
     height: 100%;
     position: relative;
-    line-height: 100%;
     overflow: hidden;
     display: inline-block;
     padding-left: 15px;
@@ -321,7 +320,7 @@ ul, li {
     width: 100%;
     background-color: #b0aeb2;
     overflow: visible;
-    vertical-align: sub;
+    vertical-align: middle;
     display: inline-block;
     height: 5px;
     border-radius: 2px;
@@ -361,6 +360,7 @@ ul, li {
     transition-duration: .5s;
     transition-property: width;
     transition-timing-function: ease;
+    border-radius:2px;
 }
 /*进度结束----------------------------------------------------*/
 
