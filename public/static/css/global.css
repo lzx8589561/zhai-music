@@ -1483,4 +1483,8 @@ header.larry-personal-tit span {
         float: left;
     }
 }
+.layui-btn {
+    margin-top: 5px;
+    margin-left: 0!important;
+}
 
