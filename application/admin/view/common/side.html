@@ -14,7 +14,7 @@
                     {volist name="userPlayers" id="vo"}
                     <dd>
                         <a href="/admin/player/{$vo.id}"><i class="layui-icon">&#xe623;</i><cite>{$vo.name}</cite>
-                            <span style="float:right;" onclick="delPlayer('{$vo.id}');return false;"><i class="layui-icon">ဆ</i></span>
+                            <span onclick="delPlayer('{$vo.id}');return false;"><i class="layui-icon">ဆ</i></span>
                         </a>
                     </dd>
                     {/volist}
@@ -29,7 +29,7 @@
                     <dd>
                         <a href="/admin/songSheet/{$vo.id}"><i class="layui-icon"
                                        data-icon="">&#xe60a;</i><cite>{$vo.name}</cite>
-                            <span style="float:right;" onclick="delSongSheet('{$vo.id}');return false;"><i class="layui-icon">ဆ</i></span>
+                            <span onclick="delSongSheet('{$vo.id}');return false;"><i class="layui-icon">ဆ</i></span>
                         </a>
                     </dd>
                     {/volist}

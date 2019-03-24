@@ -109,7 +109,7 @@ $(document).ready(function() {
 		$.post($('#regUser').attr('action'), $('#regUser').serialize(), function (data) {
 			if (data.code === 1) {
 				alert(data.msg);
-				location.href = "/";
+				location.href = "/admin/user/login";
 			} else {
 				alert(data.msg ? data.msg : '注册失败！');
 			}

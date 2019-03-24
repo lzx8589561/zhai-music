@@ -1188,7 +1188,15 @@ header.larry-personal-tit span {
 
 .beg-navbar .layui-nav-child dd a {
     padding-left: 30px;
+    padding-right: 35px;
 }
+
+.beg-navbar .layui-nav-child dd a span {
+    position: absolute;
+    top: 0;
+    right: 20px;
+}
+
 
 .col-6 {
     width: 48%;

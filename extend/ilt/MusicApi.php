@@ -828,7 +828,7 @@ class MusicApi
                             if ($radio_lrc_urls) {
                                 $radio_lrc = $this->jsonp2json($this->mc_curl($radio_lrc_urls));
                             }
-                            $radio_music = 'http://' . str_replace('ws', 'dl', $radio_url[$value['id']]);
+                            $radio_music = 'https://' . str_replace('ws', 'dl', $radio_url[$value['id']]);
                             if (!empty($radio_vkey['key'])) {
                                 $radio_music = $this->generate_qqmusic_url(
                                     $radio_song_id,
@@ -844,7 +844,7 @@ class MusicApi
                                 'author' => $radio_author,
                                 'lrc' => $this->str_decode($radio_lrc['lyric']),
                                 'url' => $radio_music,
-                                'pic' => 'http://y.gtimg.cn/music/photo_new/T002R300x300M000' . $radio_album_id . '.jpg',
+                                'pic' => 'https://y.gtimg.cn/music/photo_new/T002R300x300M000' . $radio_album_id . '.jpg',
                                 'album_name' => $value['album']['name']
                             ];
                         }
@@ -1098,13 +1098,13 @@ class MusicApi
                             }
                             $radio_songs[] = [
                                 'type' => 'netease',
-                                'link' => 'http://music.163.com/#/song?id=' . $radio_song_id,
+                                'link' => 'https://music.163.com/#/song?id=' . $radio_song_id,
                                 'songid' => $radio_song_id,
                                 'title' => $value['name'],
                                 'author' => $radio_author,
                                 'lrc' => !empty($radio_lrc['lrc']) ? $radio_lrc['lrc']['lyric'] : '',
-                                'url' => MC_INTERNAL ? $radio_urls[$radio_song_id] : 'http://music.163.com/song/media/outer/url?id=' . $radio_song_id . '.mp3',
-                                'pic' => $value['album']['picUrl'] . '?param=300x300',
+                                'url' => MC_INTERNAL ? $radio_urls[$radio_song_id] : 'https://music.163.com/song/media/outer/url?id=' . $radio_song_id . '.mp3',
+                                'pic' => str_replace('http://', 'https://', $value['album']['picUrl']) . '?param=300x300',
                                 'album_name' => $value['album']['name']
                             ];
                         }
@@ -1252,9 +1252,9 @@ class MusicApi
     // 生成 QQ 音乐各品质链接
     public function generate_qqmusic_url($songmid, $key)
     {
-        $quality = array('M800', 'M500', 'C400');
+        $quality = array('M500', 'C400');
         foreach ($quality as $value) {
-            $url = 'http://dl.stream.qqmusic.qq.com/' . $value . $songmid . '.mp3?vkey=' . $key . '&guid=5150825362&fromtag=1';
+            $url = 'https://dl.stream.qqmusic.qq.com/' . $value . $songmid . '.mp3?vkey=' . $key . '&guid=5150825362&fromtag=1';
             if (!$this->mc_is_error($url)) {
                 return $url;
             }
@@ -1307,7 +1307,7 @@ class MusicApi
                 'song_id' => $radio_song_id.'',
                 'name' => $value['name'],
                 'artist_name' => $radio_author,
-                'album_cover' => $value['album']['picUrl'] . '?param=300x300',
+                'album_cover' => str_replace('http://', 'https://', $value['album']['picUrl']) . '?param=300x300',
                 'album_name' => $value['album']['name']
             ];
         }

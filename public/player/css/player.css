@@ -3,9 +3,9 @@
  * author: Zing(IT技术宅)
  * qq: 8589561
  * motto: php是世界上最好的语言(开个玩笑😂)
- * version: 2.2.0
+ * version: 2.2.1
  * webSite: http://www.ilt.me
- * time: 2019/03/22
+ * time: 2019/03/24
  * disclaimer: 插件修改于明月浩空免费版，仅用于学习交流，无商业价值
  *             如发现商业传播，将禁止软件的免费使用
  */
@@ -592,7 +592,10 @@ ul, li {
     height: 40px;
     line-height: 40px;
     border-bottom: solid #eee 1px;
-    background-color: rgba(0, 0, 0, 0.1)
+    background-color: rgba(0, 0, 0, 0.1);
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
 }
 
 #lzxPlayer .playlist .list li:last-child {
@@ -1605,4 +1608,17 @@ ul, li {
 }
 #lzxPlayer .infos i,#lzxPlayer .status .note i{
     color: inherit;
+}
+
+#lzxPlayer.phone .playlist .list li {
+    height: 30px;
+    line-height: 30px;
+    font-size: 12px;
+}
+#lzxPlayer.phone .playlist .list li .fa-angle-right {
+    line-height: 30px;
+}
+#lzxPlayer.phone .playlist .musicheader {
+    font-size: 16px;
+    padding: 7px 0 7px 10px;
 }

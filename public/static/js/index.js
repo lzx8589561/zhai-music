@@ -62,6 +62,10 @@ layui.config({
         	layer.msg("两次密码输入不一致！");
         	return false;
 		}
+        if(newPwd.length < 6){
+			layer.msg("密码长度不能小于6位！");
+			return false;
+		}
 
         $.post("/admin/user/resetPwd", {beforePwd:beforePwd,newPwd:newPwd}, function (data) {
             layer.alert(data.msg ? data.msg : '操作失败！');

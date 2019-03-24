@@ -49,10 +49,6 @@ Route::get('/api/musicUrl','api/Index/musicUrl');
 // 获取音乐歌词地址
 Route::get('/api/musicLyric','api/Index/musicLyric');
 
-// 注册
-Route::post('/api/register','api/Register/register');
-Route::post('/api/token','api/Register/token');
-
 return [
 
 ];

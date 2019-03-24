@@ -193,8 +193,9 @@
                                 </div>
                                 <div class="layui-form-item">
                                     <div class="layui-input-block save-button">
-                                        <button class="layui-btn" lay-submit lay-filter="*">保存配置</button>
+                                        <button class="layui-btn" lay-submit lay-filter="save">保存配置</button>
                                         <button type="reset" class="layui-btn layui-btn-primary">恢复默认</button>
+                                        <button class="layui-btn" lay-submit lay-filter="loadTest">加载测试</button>
                                     </div>
                                 </div>
                             </div>
@@ -218,10 +219,20 @@
             +document.location.host+'/player/js/player.js" key="{$entity.id}"><\/script>');
 
         layer = layui.layer;
-        form.on('submit(*)', function (data) {
+        form.on('submit(save)', function (data) {
             $.post("/admin/player/edit", data.field, function (data) {
                 layer.alert(data.msg);
             });
+            return false;
+        });
+        form.on('submit(loadTest)', function (data) {
+            try{
+                lzxPlayerTestKey = data.field.id;
+                if(typeof window.lzxPlayerReload !== "undefined" ){
+                    window.lzxPlayerReload()
+                }
+                lzxPlayerInit(window);
+            }catch (e) {}
             return false;
         });
 
